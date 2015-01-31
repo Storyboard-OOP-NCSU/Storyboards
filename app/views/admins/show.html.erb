@@ -1,2 +1,26 @@
-<h1>Admins#show</h1>
-<p>Find me in app/views/admins/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h1>Admin</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @admin.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @admin.password %>
+</p>
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>
+<br><br>
+<%= link_to 'Admins Catalog', admins_path %>
+<br>
+<%= link_to 'Project Catalog', projects_path %>
+<br>
+<%= link_to 'Developer Catalog', developers_path %>

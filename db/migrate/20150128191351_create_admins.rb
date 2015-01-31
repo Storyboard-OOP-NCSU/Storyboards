@@ -1,14 +1,11 @@
 class CreateAdmins < ActiveRecord::Migration
-  def up
+  def change
     create_table :admins do |t|
-      t.string "name"
-      t.string "email"
-      t.string "password"
-      t.timestamps
-    end
-  end
+      t.string :name
+      t.string :email
+      t.string :password
 
-  def down
-  	drop_table :admins
+      t.timestamps null: false
+    end
   end
 end

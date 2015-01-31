@@ -1,57 +1,64 @@
 class AdminsController < ApplicationController
+  before_action :set_admin, only: [:show, :edit, :update]
+
+  # GET /admins
+  # GET /admins.json
   def index
     @admins = Admin.all
   end
 
+  # GET /admins/1
+  # GET /admins/1.json
   def show
-    @admin = Admin.find(params[:id])
   end
 
+  # GET /admins/new
   def new
-    @admin = Admin.new(:name => 'Admin')
-    @admin_count = Admin.count + 1
+    @admin = Admin.new
   end
 
+  # GET /admins/1/edit
+  def edit
+  end
+
+  # POST /admins
+  # POST /admins.json
   def create
     @admin = Admin.new(admin_params)
-    if @admin.save
-      #need insert flash notice
-      redirect_to(:action => 'index')
-    else
-      @admin_count = Admin.count + 1
-      render('new')
+
+    respond_to do |format|
+      if @admin.save
+        format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
+        format.json { render :show, status: :created, location: @admin }
+      else
+        format.html { render :new }
+        format.json { render json: @admin.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def edit
-    @admin = Admin.find(params[:id])
-    @admin_count = Admin.count
-  end
-
+  # PATCH/PUT /admins/1
+  # PATCH/PUT /admins/1.json
   def update
-    @admin = Admin.find(params[:id])
-    if @admin.update_attributes(admin_params)
-      #insert flash notice
-       redirect_to(:action => 'show', :id => @admin.id)
-    else
-      @admin_count = Admin.count
-      render('edit')
+    respond_to do |format|
+      if @admin.update(admin_params)
+        format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
+        format.json { render :show, status: :ok, location: @admin }
+      else
+        format.html { render :edit }
+        format.json { render json: @admin.errors, status: :unprocessable_entity }
+      end
     end
-  end
-
-  def delete
-    @admin = Admin.find(params[:id])
-  end
-
-  def destroy
-    @admin = Admin.find(params[:id])
-    @admin.destroy
-    #insert flash notice
-    redirect_to(:action => 'index')
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin
+    @admin = Admin.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.require(:admin).permit(:name, :email, :created_at)
+    params.require(:admin).permit(:name, :email, :password)
   end
 end
