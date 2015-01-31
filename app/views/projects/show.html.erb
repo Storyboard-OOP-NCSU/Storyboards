@@ -1,2 +1,70 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+<h1>Project</h1>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @project.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @project.description %>
+  </p>
+<fieldset>
+  <h3>Developers</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% Developer.all.each do |developer| %>
+      <% if developer.project == @project%>
+        <tr>
+          <td><%= developer.name %></td>
+          <td><%= developer.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</fieldset>
+<fieldset>
+<h3>Story Board</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Point</th>
+    <th>Stages</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Story.all.each do |story| %>
+      <% if story.project == @project%>
+      <tr>
+        <td><%= story.title %></td>
+        <td><%= story.description %></td>
+        <td><%= story.point %></td>
+        <td><%= story.stages %></td>
+        <td><%= link_to 'Show', story %></td>
+        <td><%= link_to 'Edit', edit_story_path(story) %></td>
+        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+</fieldset>
+<br>
+<%= link_to 'New Story',new_story_path %>
+<br>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
