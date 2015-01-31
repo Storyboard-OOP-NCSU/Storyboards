@@ -1,56 +1,74 @@
 class DevelopersController < ApplicationController
+  before_action :set_developer, only: [:show, :edit, :update, :destroy]
+
+  # GET /developers
+  # GET /developers.json
   def index
     @developers = Developer.all
   end
 
+  # GET /developers/1
+  # GET /developers/1.json
   def show
-    @developer = Developer.find(params[:id])
   end
 
+  # GET /developers/new
   def new
-    @developer = Developer.new(:name => 'Developer')
-    @developer_count = Developer.count + 1
+    @developer = Developer.new
   end
 
+  # GET /developers/1/edit
+  def edit
+  end
+
+  # POST /developers
+  # POST /developers.json
   def create
     @developer = Developer.new(developer_params)
-    if @developer.save
-      redirect_to(:action => 'index')
-    else
-      @developer_count = Developer.count + 1
-      render('new')
+
+    respond_to do |format|
+      if @developer.save
+        format.html { redirect_to @developer, notice: 'Developer was successfully created.' }
+        format.json { render :show, status: :created, location: @developer }
+      else
+        format.html { render :new }
+        format.json { render json: @developer.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def edit
-    @developer = Developer.find(params[:id])
-    @developer_count = Developer.count
-  end
-
+  # PATCH/PUT /developers/1
+  # PATCH/PUT /developers/1.json
   def update
-    @developer = Developer.find(params[:id])
-    if @developer.update_attributes(admin_params)
-      #insert flash notice
-      redirect_to(:action => 'show', :id => @developer.id)
-    else
-      @developer_count = Developer.count
-      render('edit')
+    respond_to do |format|
+      if @developer.update(developer_params)
+        format.html { redirect_to @developer, notice: 'Developer was successfully updated.' }
+        format.json { render :show, status: :ok, location: @developer }
+      else
+        format.html { render :edit }
+        format.json { render json: @developer.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def delete
-    @developer = Developer.find(params[:id])
-  end
-
+  # DELETE /developers/1
+  # DELETE /developers/1.json
   def destroy
-    @developer = Developer.find(params[:id])
     @developer.destroy
-    #indert flash notice
-    redirect_to(:action => 'index')
+    respond_to do |format|
+      format.html { redirect_to developers_url, notice: 'Developer was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
-  def developer_params
-    params.require(:developer).permit(:name, :email, :created_at)
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_developer
+      @developer = Developer.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def developer_params
+      params.require(:developer).permit(:project_id, :name, :email, :password)
+    end
 end

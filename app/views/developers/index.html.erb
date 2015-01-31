@@ -1,2 +1,39 @@
-<h1>Developers#index</h1>
-<p>Find me in app/views/developers/index.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h1>Developer Catalog</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @developers.each do |developer| %>
+      <tr>
+        <td><%= developer.name %></td>
+        <td><%= developer.email %></td>
+        <td><%= developer.password %></td>
+        <% if developer.project.present? %>
+            <td><%= developer.project.title %></td>
+        <% else %>
+            <td></td>
+        <% end %>
+        <td><%= link_to 'Show', developer %></td>
+        <td><%= link_to 'Edit', edit_developer_path(developer) %></td>
+        <td><%= link_to 'Destroy', developer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Developer', new_developer_path %>
+<br>
+<%= link_to 'Back', admins_path %>
+<p> Notice! Back should go to one admin's page, not admin catalog, still need to modify </p>
