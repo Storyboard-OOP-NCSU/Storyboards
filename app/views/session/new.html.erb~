@@ -4,8 +4,7 @@
         <legend>Please Log In</legend>
         <div>
           <label for="position" >Position:</label>
-          <% option = ['Developer','Admin'] %>
-          <%= select("position", params[:position] , option.collect{ |c| [c, c] })%>
+          <%= select("position", params[:position] , Project.all.collect{ |c| [ c.title, c.id] })%>
         </div>
         
         <div>

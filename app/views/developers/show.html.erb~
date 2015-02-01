@@ -21,6 +21,5 @@
     <%= @developer.project.title %>
   <% end %>
 </p>
-<%= button_to 'Logout', logout_path, :method => :delete %>
-<br>
+
 <%= link_to 'Edit', edit_developer_path(@developer) %>

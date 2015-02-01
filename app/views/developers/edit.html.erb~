@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @developer %> |
-<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
+<%= link_to 'Back', developer(session[:developer_id].to_s.to_sym) %>
