@@ -7,6 +7,7 @@ class Story < ActiveRecord::Base
   validates :stages, :presence => true
   validates :project, :presence => true
   
+  # ====================================
   class << self
     def checkstatus
     	Story.all.each do |story|
