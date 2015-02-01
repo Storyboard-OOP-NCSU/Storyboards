@@ -56,17 +56,25 @@
         <td><%= story.description %></td>
         <td><%= story.point %></td>
         <td><%= story.stages %></td>
-        <td><%= link_to 'Show', story %></td>
-        <td><%= link_to 'Edit', edit_story_path(story) %></td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:position] == ['Developer'] %>
+        	<td><%= link_to 'Show', story %></td>
+        	<td><%= link_to 'Edit', edit_story_path(story) %></td>
+        	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
       <% end %>
  	 <% end %>
  	 </tbody>
 	</table>
 </fieldset>
-<br>
-<%= link_to 'New Story',new_story_path %>
+<% if session[:position] == ['Developer'] %>
+	<br>
+	<%= link_to 'New Story',new_story_path %>
+<% end %>
 <br>
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<% if session[:position] == ['Developer'] %>
+	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
+<% else %>
+	<%= link_to 'Back', projects_path %>
+<% end %>
