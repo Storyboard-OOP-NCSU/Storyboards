@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @admin %> |
-<%= link_to 'Back', Admin.all.find_by_id(session[:admin_id]) %>
+<%= link_to 'Back', @admins.find_by_id(session[:admin_id]) %>

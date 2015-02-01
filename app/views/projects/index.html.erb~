@@ -26,4 +26,4 @@
 
 <br>
 <%= link_to 'New Project', new_project_path %>|
-<%= link_to 'Back', Admin.all.find_by_id(session[:admin_id]) %>
+<%= link_to 'Back', Admins.all.find_by_id(session[:admin_id]) %>

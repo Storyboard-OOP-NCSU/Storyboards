@@ -23,5 +23,6 @@
 
 <br>
 
-<%= link_to 'New Admin', new_admin_path %> | 
+<%= link_to 'New Admin', new_admin_path %>
+<br>
 <%= link_to 'Back', @admins.find_by_id(session[:admin_id]) %>

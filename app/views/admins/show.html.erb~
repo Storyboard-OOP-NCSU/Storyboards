@@ -18,7 +18,7 @@
 <%= button_to 'Logout', logout_path, :method => :delete %>
 <br>
 <%= link_to 'Edit', edit_admin_path(@admin) %> 
-<br> <br>
+<br>
 <%= link_to 'Admins Catalog', admins_path %>
 <br>
 <%= link_to 'Project Catalog', projects_path %>
