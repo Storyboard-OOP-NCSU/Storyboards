@@ -1,2 +1,31 @@
-<h1>Stories#show</h1>
-<p>Find me in app/views/stories/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @story.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @story.description %>
+</p>
+
+<p>
+  <strong>Point:</strong>
+  <%= @story.point %>
+</p>
+
+<p>
+  <strong>Stages:</strong>
+  <%= @story.stages %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <% if @story.project.present? %>
+    <%= @story.project.title %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', projects_path %>

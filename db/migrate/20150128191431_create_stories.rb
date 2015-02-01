@@ -1,17 +1,13 @@
 class CreateStories < ActiveRecord::Migration
-  def up
+  def change
     create_table :stories do |t|
-      t.string "title"
-      t.text "description"
-      t.integer "point_value", default: 1
-      t.string "stage", default: "Analysis"
-      t.integer "project_id"  #foreign key
+      t.string :title
+      t.text :description
+      t.integer :point
+      t.string :stages
+      t.references :project
 
-      t.timestamps
+      t.timestamps null: false
     end
-  end
-
-  def down
-  	drop_table :stories
   end
 end

@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20150128191442) do
   create_table "stories", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "point_value", default: 1
-    t.string   "stage",       default: "Analysis"
+    t.integer  "point"
+    t.string   "stages"
     t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

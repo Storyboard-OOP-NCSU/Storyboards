@@ -1,56 +1,74 @@
 class StoriesController < ApplicationController
+  before_action :set_story, only: [:show, :edit, :update, :destroy]
+
+  # GET /stories
+  # GET /stories.json
   def index
     @stories = Story.all
   end
 
+  # GET /stories/1
+  # GET /stories/1.json
   def show
-    @story = Story.find(params[:id])
   end
 
+  # GET /stories/new
   def new
-    @story = Story.new(:title => 'Story 1')
-    @story_count = Story.count + 1
+    @story = Story.new
   end
 
+  # GET /stories/1/edit
+  def edit
+  end
+
+  # POST /stories
+  # POST /stories.json
   def create
     @story = Story.new(story_params)
-    if @story.save
-      redirect_to(:action => 'index')
-    else
-      @story_count = Story.count
-      render('new')
+
+    respond_to do |format|
+      if @story.save
+        format.html { redirect_to @story, notice: 'Story was successfully created.' }
+        format.json { render :show, status: :created, location: @story }
+      else
+        format.html { render :new }
+        format.json { render json: @story.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def edit
-    @story = Story.find(params[:id])
-    @story_count = Story.count
-  end
-
+  # PATCH/PUT /stories/1
+  # PATCH/PUT /stories/1.json
   def update
-    @story = Story.find(params[:id])
-    if @story.update_attributes(story_params)
-      #insert flash notice
-      redirect_to(:action => 'show', :id => @story.id)
-    else
-      @story_count = Story.count
-      render('edit')
+    respond_to do |format|
+      if @story.update(story_params)
+        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+        format.json { render :show, status: :ok, location: @story }
+      else
+        format.html { render :edit }
+        format.json { render json: @story.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def delete
-    @story = Story.find(params[:id])
-  end
-
+  # DELETE /stories/1
+  # DELETE /stories/1.json
   def destroy
-    @story = Story.find(params[:id])
     @story.destroy
-    #insert flash notice
-    redirect_to(:action => 'index')
+    respond_to do |format|
+      format.html { redirect_to stories_url, notice: 'Story was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
-  def story_params
-    params.require(:story).permit(:title, :description, :point_value, :stage)
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_story
+      @story = Story.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def story_params
+      params.require(:story).permit(:project_id, :title, :description, :point, :stages)
+    end
 end
