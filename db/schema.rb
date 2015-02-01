@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20150128191442) do
     t.string   "name"
     t.string   "email"
     t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "developers", force: true do |t|
@@ -27,15 +27,15 @@ ActiveRecord::Schema.define(version: 20150128191442) do
     t.string   "password"
     t.integer  "project_id"
     t.integer  "story_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "stories", force: true do |t|
