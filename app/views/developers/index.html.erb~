@@ -33,7 +33,6 @@
 </table>
 
 <br>
-<%= link_to 'New Developer', new_developer_path %>
-<br>
-<%= link_to 'Back', admins_path %>
-<p> Notice! Back should go to one admin's page, not admin catalog, still need to modify </p>
+<%= link_to 'New Developer', new_developer_path %>|
+<%= link_to 'Back', Admin.all.find_by_id(session[:admin_id]) %>
+
