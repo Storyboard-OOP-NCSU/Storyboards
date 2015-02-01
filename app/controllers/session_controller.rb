@@ -8,12 +8,12 @@ class SessionController < ApplicationController
       session[:admin_id] = admin.id
       redirect_to admin
     else
-      redirect_to login_url, :alert => 'Invalid user/password combination'
+      redirect_to login_url
     end
   end
 
   def destroy
     session[:admin_id] = nil
-    redirect_to login_url, :notice => 'Logged out'
+    redirect_to login_url
   end
 end
