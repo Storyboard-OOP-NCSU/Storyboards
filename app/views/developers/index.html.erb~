@@ -34,5 +34,8 @@
 
 <br>
 <%= link_to 'New Developer', new_developer_path %>|
-<%= link_to 'Back', Admin.all.find_by_id(session[:admin_id]) %>
+<%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8cff8233d705f2c53acde59f43b085e7b4098aec
