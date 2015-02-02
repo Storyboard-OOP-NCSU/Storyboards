@@ -20,7 +20,8 @@
   <% end %>
 </p>
 <%= link_to 'Edit', edit_developer_path(@developer) %> |
-<%= link_to 'Project', project_path(@developer.project) %> |
-
+<%= link_to 'Project', project_path(@developer.project) %>
+<br>
+<%= link_to 'Edit Story', edit_story_path(@developer.story) %>
 <br> <br>
 <%= button_to 'Logout', logout_path, :method => :delete %>

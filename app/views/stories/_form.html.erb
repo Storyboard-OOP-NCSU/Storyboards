@@ -32,15 +32,12 @@
                  'Dev Complete','In Test','Complete'] %>
     <%= select("story", "stages", option.collect{ |c| [c, c] }) %>
   </div>
-  
-  <% if session[:position] == ['Admin'] %>
-  	<br>
-    <div class="field">
-      <%= f.label :project %><br>
-      <% project = [Developer.find_by_id(session[:developer_id]).project] %>
-      <%= select("story", "project_id", project.collect{ |c| [ c.title, c.id] }) %>
-    </div>
-  <% end %>
+ 	<br>
+  <div class="field">
+    <%= f.label :project %>
+    <% project = [Developer.find_by_id(session[:developer_id]).project] %>
+    <%= select("story", "project_id", project.collect{ |c| [ c.title, c.id] }) %>
+  </div>
   <br>
   <div class="actions">
     <%= f.submit %>

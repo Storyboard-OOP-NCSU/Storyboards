@@ -42,8 +42,12 @@ class StoriesController < ApplicationController
   def update
     respond_to do |format|
       if @story.update(story_params)
-        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-        format.json { render :show, status: :ok, location: @story }
+      	if @story.stages == 'Complete'
+        	destroy
+        else
+        	format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+        	format.json { render :show, status: :ok, location: @story }
+        end
       else
         format.html { render :edit }
         format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -54,9 +58,10 @@ class StoriesController < ApplicationController
   # DELETE /stories/1
   # DELETE /stories/1.json
   def destroy
+  	project = @story.project
     @story.destroy
     respond_to do |format|
-      format.html { redirect_to stories_url, notice: 'Story was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'Story was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
