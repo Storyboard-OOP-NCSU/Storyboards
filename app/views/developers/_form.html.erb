@@ -2,7 +2,6 @@
   <% if @developer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@developer.errors.count, "error") %> prohibited this developer from being saved:</h2>
-
       <ul>
       <% @developer.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,7 +9,8 @@
       </ul>
     </div>
   <% end %>
-
+  
+	<% if session[:position] == ['Admin'] %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -19,22 +19,27 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+  <% end %>
+  
   <div class="field">
     <%= f.label :password %><br>
     <%= f.text_field :password %>
   </div>
+  <br>
   <% if session[:position] == ['Admin'] %>
   <div class="field">
-      <%= f.label :project %><br />
+      <%= f.label :project %>  
       <%= select("developer", "project_id", Project.all.collect{ |c| [ c.title, c.id] }) %>
   </div>
   <% end %>
+  
   <% if session[:position] == ['Developer'] %>
   <div class="field">
-      <%= f.label :story %>
+      <%= f.label :story %>  
       <%= select("developer", "story_id", Developer.find_by_id(session[:developer_id]).project.stories.collect{ |c| [ c.title, c.id] }) %>
   </div>
   <% end %>
+  
   <br>
   <div class="actions">
     <%= f.submit %>

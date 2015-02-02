@@ -2,10 +2,6 @@
   <%= form_tag do %>
       <fieldset>
         <legend>Please Log In</legend>
-        <div>
-          <label for="position" >Position:</label>
-          <%= select("position", params[:position] , Project.all.collect{ |c| [ c.title, c.id] })%>
-        </div>
         
         <div>
           <label for="name" >Name:</label>
@@ -15,7 +11,11 @@
           <label for="password" >Password:</label>
           <%= password_field_tag :password, params[:password] %>
         </div>
+        <br>
         <div>
+          <label for="position" ></label>
+          <% option = ['Developer','Admin'] %>
+          <%= select("position", params[:position] , option.collect{ |c| [c, c] })%>
           <%= submit_tag 'Login'%>
         </div>
       </fieldset>

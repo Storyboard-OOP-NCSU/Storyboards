@@ -15,27 +15,33 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+  <br>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :point %><br>
+    <%= f.label :point %>
     <%= f.number_field :point %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :stages %><br>
+    <%= f.label :stages %>
     <% option = ['Analysis','Ready For Dev','In Dev',
                  'Dev Complete','In Test','Complete'] %>
     <%= select("story", "stages", option.collect{ |c| [c, c] }) %>
   </div>
+  
   <% if session[:position] == ['Admin'] %>
+  	<br>
     <div class="field">
       <%= f.label :project %><br>
       <% project = [Developer.find_by_id(session[:developer_id]).project] %>
       <%= select("story", "project_id", project.collect{ |c| [ c.title, c.id] }) %>
     </div>
   <% end %>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

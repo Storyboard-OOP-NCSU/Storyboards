@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="banner" >
-		<h1> <%= 'Storyboards' %> </h1>
+		<h1> <%= '' %> </h1>
 	</div>
 	<%= yield %>
 </body>

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Project</h1>
+<h2> Project <%= @project.title %></h2>
 <fieldset>
   <legend>Information</legend>
   <p>
@@ -24,13 +24,11 @@
     </thead>
 
     <tbody>
-    <% Developer.all.each do |developer| %>
-      <% if developer.project == @project%>
+    <% @project.developers.each do |developer| %>
         <tr>
           <td><%= developer.name %></td>
           <td><%= developer.email %></td>
         </tr>
-      <% end %>
     <% end %>
     </tbody>
   </table>
@@ -64,12 +62,11 @@
  	 <% end %>
  	 </tbody>
 	</table>
-</fieldset>
-<% if session[:position] == ['Developer'] %>
+	<% if session[:position] == ['Developer'] %>
 	<br>
 	<%= link_to 'New Story',new_story_path %>
 <% end %>
-<br>
+</fieldset>
 <% if session[:position] == ['Developer'] %>
 	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
 <% else %>

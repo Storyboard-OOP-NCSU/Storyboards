@@ -1,4 +1,4 @@
-<h2>New Admin</h2>
+<h1>New Admin</h1>
 
 <%= render 'form' %>
 

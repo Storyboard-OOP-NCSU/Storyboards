@@ -1,18 +1,8 @@
 <p id="notice"><%= notice %></p>
-<h1>Developer</h1>
-<p>
-  <strong>Name:</strong>
-  <%= @developer.name %>
-</p>
-
+<h2> Welcome! <%= @developer.name %> </h2>
 <p>
   <strong>Email:</strong>
   <%= @developer.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @developer.password %>
 </p>
 
 <p>
@@ -23,10 +13,13 @@
 </p>
 <p>
   <strong>Story:</strong>
+  <% if @developer.story.present? %>
     <%= @developer.story.title %>
+  <% else %>
+  	<%= 'none' %>
+  <% end %>
 </p>
-<%= button_to 'Logout', logout_path, :method => :delete %>
-<br>
-<%= link_to 'Edit', edit_developer_path(@developer) %>
-<br>
+<%= link_to 'Edit', edit_developer_path(@developer) %> |
 <%= link_to 'project', project_path(@developer.project) %>
+<br> <br>
+<%= button_to 'Logout', logout_path, :method => :delete %>
