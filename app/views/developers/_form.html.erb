@@ -19,14 +19,10 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <% end %>
-  
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
+  	<%= f.label :password %><br>
+  	<%= f.text_field :password %>
   </div>
-  <br>
-  <% if session[:position] == ['Admin'] %>
   <div class="field">
       <%= f.label :project %>  
       <%= select("developer", "project_id", Project.all.collect{ |c| [ c.title, c.id] }) %>
@@ -35,7 +31,12 @@
   
   <% if session[:position] == ['Developer'] %>
   <div class="field">
-      <%= f.label :story %>  
+  	<%= f.label 'change password' %><br>
+  	<%= f.text_field :password %>
+  </div>
+  <br>
+  <div class="field">
+      <%= f.label 'sign up story' %><br>  
       <%= select("developer", "story_id", Developer.find_by_id(session[:developer_id]).project.stories.collect{ |c| [ c.title, c.id] }) %>
   </div>
   <% end %>

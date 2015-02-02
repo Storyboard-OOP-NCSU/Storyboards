@@ -10,10 +10,10 @@ class Story < ActiveRecord::Base
   class << self
     def checkstatus
     	Story.all.each do |story|
-    	if story.project == nil
-    		story.destroy
-    	end
-    end
+    		if story.project == nil
+    			story.destroy
+    		end
+   		end
     end
   end
 end
