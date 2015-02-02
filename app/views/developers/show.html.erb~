@@ -21,6 +21,12 @@
     <%= @developer.project.title %>
   <% end %>
 </p>
+<p>
+  <strong>Story:</strong>
+    <%= @developer.story.title %>
+</p>
 <%= button_to 'Logout', logout_path, :method => :delete %>
 <br>
 <%= link_to 'Edit', edit_developer_path(@developer) %>
+<br>
+<%= link_to 'project', project_path(@developer.project) %>
