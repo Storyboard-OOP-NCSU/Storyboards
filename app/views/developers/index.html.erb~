@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Developer Catalog</h2>
+<h2>Developers Catalog</h2>
 
 <table>
   <thead>
@@ -22,12 +22,12 @@
         <% else %>
             <td></td>
         <% end %>
-        <td><%= link_to 'Remove', developer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', developers_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Developer', new_developer_path %>|
+<%= link_to 'New Developer', new_developer_path %> |
 <%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
