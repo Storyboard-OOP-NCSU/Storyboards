@@ -11,6 +11,11 @@
     <strong>Description:</strong>
     <%= @project.description %>
   </p>
+  
+  <p>
+    <strong>Total Points:</strong>
+    <%= @project.sum %>
+  </p>
  </fieldset>
 <fieldset>
   <legend>Developers</legend>
@@ -66,7 +71,6 @@
 	<%= link_to 'New Story',new_story_path %>
 <% end %>
 </fieldset>
-<br>
 <% if session[:position] == ['Developer'] %>
 	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
 <% else %>
