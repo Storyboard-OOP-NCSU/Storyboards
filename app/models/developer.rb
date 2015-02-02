@@ -5,7 +5,6 @@ class Developer < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :password, :presence => true
   validates :project, :presence => true
-  validates :story, :presence => false
   
   class << self
     def authenticate(name, password)

@@ -24,13 +24,11 @@
     </thead>
 
     <tbody>
-    <% Developer.all.each do |developer| %>
-      <% if developer.project == @project%>
+    <% @project.developers.each do |developer| %>
         <tr>
           <td><%= developer.name %></td>
           <td><%= developer.email %></td>
         </tr>
-      <% end %>
     <% end %>
     </tbody>
   </table>
@@ -49,8 +47,7 @@
 	 </thead>
 	
  	 <tbody>
- 	 <% Story.all.each do |story| %>
-      <% if story.project == @project%>
+ 	 <% @project.stories.each do |story| %>
       <tr>
         <td><%= story.title %></td>
         <td><%= story.description %></td>
@@ -60,7 +57,6 @@
         	<td><%= link_to 'Show', story %></td>
         	<td><%= link_to 'Edit', edit_story_path(story) %></td>
         	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
       </tr>
       <% end %>
  	 <% end %>

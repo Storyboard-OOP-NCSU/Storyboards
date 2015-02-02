@@ -49,8 +49,7 @@
 	 </thead>
 	
  	 <tbody>
- 	 <% Story.all.each do |story| %>
-      <% if story.project == @project%>
+ 	 <% @project.stories.each do |story| %>
       <tr>
         <td><%= story.title %></td>
         <td><%= story.description %></td>
@@ -60,7 +59,6 @@
         	<td><%= link_to 'Show', story %></td>
         	<td><%= link_to 'Edit', edit_story_path(story) %></td>
         	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
       </tr>
       <% end %>
  	 <% end %>
@@ -75,6 +73,5 @@
 <% if session[:position] == ['Developer'] %>
 	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
 <% else %>
-	<%= link_to 'Edit', edit_project_path(@project) %> |
 	<%= link_to 'Back', projects_path %>
 <% end %>

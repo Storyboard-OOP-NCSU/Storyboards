@@ -32,7 +32,7 @@
   <% if session[:position] == ['Developer'] %>
   <div class="field">
       <%= f.label :story %>
-      <%= select("developer", "story_id", Story.all.collect{ |c| [ c.title, c.id] }) %>
+      <%= select("developer", "story_id", Developer.find_by_id(session[:developer_id]).project.stories.collect{ |c| [ c.title, c.id] }) %>
   </div>
   <% end %>
   <div class="actions">
