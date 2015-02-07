@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find(params[:id])
   end
 
   # GET /projects/new
@@ -20,7 +19,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
   end
 
   # POST /projects

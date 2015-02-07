@@ -10,7 +10,6 @@ class DevelopersController < ApplicationController
   # GET /developers/1
   # GET /developers/1.json
   def show
-    @developer = Developer.find(params[:id])
   end
 
   # GET /developers/new
@@ -20,7 +19,6 @@ class DevelopersController < ApplicationController
 
   # GET /developers/1/edit
   def edit
-    @developer = Developer.find(params[:id])
   end
 
   # POST /developers

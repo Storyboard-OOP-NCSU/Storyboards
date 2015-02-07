@@ -10,7 +10,6 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
-    @story = Story.params([:id])
   end
 
   # GET /stories/new
@@ -20,7 +19,6 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
-    @story = Story.params([:id])
   end
 
   # POST /stories

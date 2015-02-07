@@ -10,7 +10,6 @@ class AdminsController < ApplicationController
   # GET /admins/1
   # GET /admins/1.json
   def show
-    @admin = Admin.find(params[:id])
   end
 
   # GET /admins/new
@@ -20,7 +19,6 @@ class AdminsController < ApplicationController
 
   # GET /admins/1/edit
   def edit
-    @admin = Admin.find(params[:id])
   end
 
   # POST /admins
