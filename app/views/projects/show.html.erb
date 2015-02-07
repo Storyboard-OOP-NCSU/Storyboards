@@ -61,17 +61,19 @@
         <td><%= link_to 'Show', story %></td>
         <% if session[:position] == ['Developer'] %>
         	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        	<% developer = Developer.find_by_id(session[:developer_id]) %>
+        	<% if developer.story == story %>
+        		<td><%= link_to 'Edit Story', edit_story_path(developer.story) %></td>
+        	<% else %>
+        		<td></td>
+        	<% end %>
         <% end %>
       </tr>
  	 <% end %>
  	 </tbody>
 	</table>
-	<% if session[:position] == ['Developer'] %>
+<% if session[:position] == ['Developer'] %>
 		<%= link_to 'New Story',new_story_path %>	
-		<% developer = Developer.find_by_id(session[:developer_id]) %>
-		<% if developer.story != nil %>
-			|<%= link_to 'Edit Story', edit_story_path(developer.story) %>
-		<% end %>
 <% end %>
 </fieldset>
 <% if session[:position] == ['Developer'] %>
