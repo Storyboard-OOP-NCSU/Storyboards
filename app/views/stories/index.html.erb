@@ -2,6 +2,14 @@
 
 <h1>Listing Stories</h1>
 
+
+  <%= form_tag stories_path, :method => 'get' do %>
+    <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+
 <table>
   <thead>
     <tr>
@@ -30,4 +38,5 @@
 
 <br>
 
-<%= link_to 'New Story', new_story_path %>
+<%= link_to 'New Story', new_story_path %> |
+<%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>

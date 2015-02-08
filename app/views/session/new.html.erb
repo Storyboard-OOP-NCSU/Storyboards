@@ -15,7 +15,7 @@
         <div>
           <label for="position" ></label>
           <% option = ['Developer','Admin'] %>
-          <%= select("position", params[:position] , option.collect{ |c| [c, c] })%>
+          <%= select("position", params[:position] , option.collect{ |c| [c, c] }, :selected => 'Admin')%>
           <%= submit_tag 'Login'%>
         </div>
       </fieldset>

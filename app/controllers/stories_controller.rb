@@ -4,8 +4,11 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.all if params[:search] == nil
+    @stories = Story.find_by_sql("SELECT * FROM stories WHERE title LIKE '%#{params[:search]}%'") unless params[:search] == nil
   end
+
+  
 
   # GET /stories/1
   # GET /stories/1.json
