@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update]
   before_action :confirm_logged_in
+  before_action :set_admin, only: [:show, :edit, :update]
+  
   # GET /admins
   # GET /admins.json
   def index

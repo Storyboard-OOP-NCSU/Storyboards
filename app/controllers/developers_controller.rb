@@ -1,6 +1,7 @@
 class DevelopersController < ApplicationController
-  before_action :set_developer, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_action :set_developer, only: [:show, :edit, :update, :destroy]
+  
   # GET /developers
   # GET /developers.json
   def index
