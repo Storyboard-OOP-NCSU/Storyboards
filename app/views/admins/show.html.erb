@@ -4,28 +4,39 @@
       <fieldset>
         <legend>Admin Info</legend>
         
-<div>
-  <strong>Email:</strong>
-  <%= @admin.email %>
-</div>
+		<div>
+		  <strong>Email:</strong>
+		  <%= @admin.email %>
+		</div>
 
-<p>
-  <strong>Password:</strong>
-  <%= @admin.password %>
-</p>
-<%= link_to 'Edit', edit_admin_path(@admin) %> 
-
-<br> <br>
-<%= link_to 'Admins Catalog', admins_path %>
-<br>
-<%= link_to 'Project Catalog', projects_path %>
-<br>
-<%= link_to 'Developer Catalog', developers_path %>
-<br>
-<%= link_to 'Story Catalog', stories_path %>
-<br> <br>
-<%= button_to 'Logout', logout_path, :method => :delete %>
-
+		<div>
+		  <strong>Password:</strong>
+		  <%= @admin.password %>
+		</div>
+		<br>
+		<div class="pretty medium success btn">
+			<%= link_to 'Edit', edit_admin_path(@admin) %> 
+		</div>
+		<br> <br>
+		<div class="medium btn pill-left default">
+			<%= link_to 'Admins Catalog', admins_path %>
+		</div>
+		
+		<div class="medium btn pill-right default">
+			<%= link_to 'Project Catalog', projects_path %>
+		</div>
+		<br><br>
+		<div class="medium btn pill-left default">
+			<%= link_to 'Developer Catalog', developers_path %>
+		</div>
+		
+		<div class="medium btn pill-right default">
+			<%= link_to 'Story Catalog', stories_path %>
+		</div>
+		<br> <br>
+		<div class="pretty medium primary btn">
+			<%= link_to 'Logout', logout_path, :method => :delete %>
+		</div>
   </fieldset>
 <% end %>
 
