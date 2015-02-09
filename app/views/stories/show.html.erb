@@ -51,8 +51,12 @@
     <%= link_to 'Back', project_path(@story.project) %>
   </div>
 <% elsif session[:position] == ['Admin'] %>
-  <div class="medium oval btn default">
-    <%= link_to 'Back', stories_path%>
+    <% if params[:back] == 'project'%>
+      <div class="medium oval btn default">
+      <%= link_to 'Back', project_path(@story.project) %>
+    <% else %>
+      <%= link_to 'Back', stories_path%>
+    <% end %>
   </div>
 <% end %>
 

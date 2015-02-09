@@ -64,9 +64,10 @@
           <td><%= story.description %></td>
           <td><%= story.point %></td>
           <td><%= story.stages %></td>
-          <td><%= link_to 'Show', story %></td>
+          <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
           <% if session[:position] == ['Developer'] %>
-          	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
           	<% developer = Developer.find_by_id(session[:developer_id]) %>
           	<% if developer.story == story %>
           		<td><%= link_to 'Edit Story', edit_story_path(developer.story) %></td>

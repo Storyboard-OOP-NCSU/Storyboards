@@ -1,45 +1,54 @@
 <%= form_for(@story) do |f| %>
-  <% if @story.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+  <fieldset>
+    <% if @story.title == nil %>
+      <legend>New Project</legend>
+    <% else %>
+      <legend>Edit Project</legend>
+    <% end %>
 
-      <ul>
-      <% @story.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @story.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+        <ul>
+        <% @story.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
     </div>
-  <% end %>
-
-  <div>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :point %>
-    <%= f.number_field :point %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :stages %>
-    <% option = ['Analysis','Ready For Dev','In Dev',
-                 'Dev Complete','In Test','Complete'] %>
-    <%= select("story", "stages", option.collect{ |c| [c, c] }) %>
-  </div>
- 	<br>
-  <div>
-    <%= f.label :project %>
-    <% project = [Developer.find_by_id(session[:developer_id]).project] %>
-    <%= select("story", "project_id", project.collect{ |c| [ c.title, c.id] }) %>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    
+    <div>
+      <%= f.label :point %>
+      <%= f.number_field :point %>
+    </div>
+    
+    <div>
+      <%= f.label :stages %>
+      <% option = ['Analysis','Ready For Dev','In Dev',
+                   'Dev Complete','In Test','Complete'] %>
+      <%= select("story", "stages", option.collect{ |c| [c, c] }) %>
+    </div>
+   	
+    <div>
+      <%= f.label :project %>
+      <% project = [Developer.find_by_id(session[:developer_id]).project] %>
+      <%= select("story", "project_id", project.collect{ |c| [ c.title, c.id] }) %>
+    </div>
+    <br>
+    <div class="pretty medium primary btn">
+      <%= f.submit %>
+    </div>
+  </fieldset>
 <% end %>
+
