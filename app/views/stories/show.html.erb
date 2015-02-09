@@ -45,4 +45,15 @@
     </tbody>
   </table>
 </fieldset>
-<%= link_to 'Back', project_path(@story.project) %>
+
+<% if session[:position] == ['Developer'] %>
+  <div class="medium oval btn default">
+    <%= link_to 'Back', project_path(@story.project) %>
+  </div>
+<% elsif session[:position] == ['Admin'] %>
+  <div class="medium oval btn default">
+    <%= link_to 'Back', stories_path%>
+  </div>
+<% end %>
+
+

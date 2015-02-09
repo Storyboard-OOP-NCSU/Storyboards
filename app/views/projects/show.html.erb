@@ -72,12 +72,18 @@
  	 <% end %>
  	 </tbody>
 	</table>
+
 <% if session[:position] == ['Developer'] %>
-		<%= link_to 'New Story',new_story_path %>	
+  <div class="medium btn pill-left default">
+    <%= link_to 'New Story',new_story_path %> 
+  </div>
+  <div class="medium btn pill-right default">
+  	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
+  </div>
+<% elsif session[:position] == ['Admin'] %>
+  <div class="medium oval btn default">
+	 <%= link_to 'Back', projects_path %>
+  </div>
 <% end %>
+
 </fieldset>
-<% if session[:position] == ['Developer'] %>
-	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
-<% else %>
-	<%= link_to 'Back', projects_path %>
-<% end %>
