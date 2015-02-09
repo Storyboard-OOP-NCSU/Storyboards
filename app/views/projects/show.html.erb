@@ -1,89 +1,97 @@
 <p id="notice"><%= notice %></p>
-<h2> Project <%= @project.title %></h2>
-<fieldset>
-  <legend>Information</legend>
-  <p>
-    <strong>Title:</strong>
-    <%= @project.title %>
-  </p>
+<%= form_tag do %>
+  <fieldset>
+    <legend>Project <%= @project.title %></legend>
+    <p>
+      <strong>Title:</strong>
+      <%= @project.title %>
+    </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @project.description %>
-  </p>
-  
-  <p>
-    <strong>Total Points:</strong>
-    <%= @project.sum_point %>
-  </p>
- </fieldset>
-<fieldset>
-  <legend>Developers</legend>
-  <table>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @project.developers.each do |developer| %>
-        <tr>
-          <td><%= developer.name %></td>
-          <td><%= developer.email %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</fieldset>
-<fieldset>
-	<legend>Story Board</legend>
-	<table>
-	  <thead>
- 	 <tr>
- 		  <th>Title</th>
-	    <th>Description</th>
- 	 	  <th>Point</th>
- 	 	  <th>Stages</th>
-  	  <th colspan="3"></th>
- 	 </tr>
-	 </thead>
-	
- 	 <tbody>
- 	 <% @project.stories.each do |story| %>
-      <tr>
-        <td><%= story.title %></td>
-        <td><%= story.description %></td>
-        <td><%= story.point %></td>
-        <td><%= story.stages %></td>
-        <td><%= link_to 'Show', story %></td>
-        <% if session[:position] == ['Developer'] %>
-        	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        	<% developer = Developer.find_by_id(session[:developer_id]) %>
-        	<% if developer.story == story %>
-        		<td><%= link_to 'Edit Story', edit_story_path(developer.story) %></td>
-        	<% else %>
-        		<td></td>
-        	<% end %>
-        <% end %>
-      </tr>
- 	 <% end %>
- 	 </tbody>
-	</table>
-
-<% if session[:position] == ['Developer'] %>
-  <div class="medium btn pill-left default">
-    <%= link_to 'New Story',new_story_path %> 
-  </div>
-  <div class="medium btn pill-right default">
-  	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
-  </div>
-<% elsif session[:position] == ['Admin'] %>
-  <div class="medium oval btn default">
-	 <%= link_to 'Back', projects_path %>
-  </div>
+    <p>
+      <strong>Description:</strong>
+      <%= @project.description %>
+    </p>
+    
+    <p>
+      <strong>Total Points:</strong>
+      <%= @project.sum_point %>
+    </p>
+   </fieldset>
 <% end %>
 
+<%= form_tag do %>
+  <fieldset>
+    <legend>Developers</legend>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @project.developers.each do |developer| %>
+          <tr>
+            <td><%= developer.name %></td>
+            <td><%= developer.email %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+<% end %>
+
+<%= form_tag do %>
+  <fieldset>
+  	<legend>Story Board</legend>
+  	<table>
+  	  <thead>
+   	 <tr>
+   		  <th>Title</th>
+  	    <th>Description</th>
+   	 	  <th>Point</th>
+   	 	  <th>Stages</th>
+    	  <th colspan="3"></th>
+   	 </tr>
+  	 </thead>
+  	
+   	 <tbody>
+   	 <% @project.stories.each do |story| %>
+        <tr>
+          <td><%= story.title %></td>
+          <td><%= story.description %></td>
+          <td><%= story.point %></td>
+          <td><%= story.stages %></td>
+          <td><%= link_to 'Show', story %></td>
+          <% if session[:position] == ['Developer'] %>
+          	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          	<% developer = Developer.find_by_id(session[:developer_id]) %>
+          	<% if developer.story == story %>
+          		<td><%= link_to 'Edit Story', edit_story_path(developer.story) %></td>
+          	<% else %>
+          		<td></td>
+          	<% end %>
+          <% end %>
+        </tr>
+   	 <% end %>
+   	 </tbody>
+  	</table>
 </fieldset>
+<% end %>
+
+  <% if session[:position] == ['Developer'] %>
+    <div class="medium btn pill-left default">
+      <%= link_to 'New Story',new_story_path %> 
+    </div>
+    <div class="medium btn pill-right default">
+    	<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
+    </div>
+  <% elsif session[:position] == ['Admin'] %>
+    <div class="medium oval btn default">
+  	 <%= link_to 'Back', projects_path %>
+    </div>
+  <% end %>
+
+
