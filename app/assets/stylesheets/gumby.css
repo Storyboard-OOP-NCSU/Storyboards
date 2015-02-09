@@ -1482,7 +1482,7 @@ form { margin: 0 0 18px; }
 form label { display: block; font-size: 16px; font-size: 1rem; line-height: 1.625em; cursor: pointer; margin-bottom: 9px; }
 form label.inline { display: inline-block; padding-right: 20px; }
 form dt { margin: 0; }
-form textarea { height: 150px; }
+form textarea { height: 150px; width: 348px;}
 form ul, form ul li { margin-left: 0; list-style-type: none; }
 form fieldset { border-style: solid; border-width: 0.0625em; padding: 1.5625em; border-color: #d8d8d8; margin: 18px 0; }
 form fieldset legend { padding: 5px 10px; }

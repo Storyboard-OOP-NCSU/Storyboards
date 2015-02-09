@@ -10,7 +10,11 @@
 <body>
 	<div>
 		<h1> <%= 'Storyboards' %> </h1>
-	</div>
+		</div>
+		<div class="pretty medium primary btn">
+			<%= link_to 'Logout', logout_path, :method => :delete %>
+		</div>
+	
 	<%= yield %>
 </body>
 </html>
