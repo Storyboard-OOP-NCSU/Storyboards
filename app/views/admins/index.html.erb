@@ -23,5 +23,9 @@
 
 <br>
 
-<%= link_to 'New Admin', new_admin_path %> | 
-<%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
+<div class="medium btn pill-left default">
+  <%= link_to 'New Admin', new_admin_path %>
+</div>
+<div class="medium btn pill-right default"> 
+  <%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
+</div>

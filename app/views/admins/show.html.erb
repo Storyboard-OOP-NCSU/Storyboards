@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
-
-<h2> Welcome! <%= @admin.name %> </h2>
-
-<p>
+<h2>Welcome! <%= @admin.name %></h2>
+<%= form_tag do %>
+      <fieldset>
+        <legend>Admin Info</legend>
+        
+<div>
   <strong>Email:</strong>
   <%= @admin.email %>
-</p>
+</div>
 
 <p>
   <strong>Password:</strong>
@@ -23,4 +25,7 @@
 <%= link_to 'Story Catalog', stories_path %>
 <br> <br>
 <%= button_to 'Logout', logout_path, :method => :delete %>
+
+  </fieldset>
+<% end %>
 

@@ -11,31 +11,31 @@
   <% end %>
   
 	<% if session[:position] == ['Admin'] %>
-  <div class="field">
+  <div>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div>
   	<%= f.label :password %><br>
   	<%= f.text_field :password %>
   </div>
-  <div class="field">
+  <div>
       <%= f.label :project %>  
       <%= select("developer", "project_id", Project.all.collect{ |c| [ c.title, c.id] }) %>
   </div>
   <% end %>
   
   <% if session[:position] == ['Developer'] %>
-  <div class="field">
+  <div>
   	<%= f.label 'change password' %><br>
   	<%= f.text_field :password %>
   </div>
   <br>
-  <div class="field">
+  <div>
       <%= f.label 'sign up story' %><br>  
       <%= select("developer", "story_id", Developer.find_by_id(session[:developer_id]).project.stories.collect{ |c| [ c.title, c.id] }) %>
   </div>
