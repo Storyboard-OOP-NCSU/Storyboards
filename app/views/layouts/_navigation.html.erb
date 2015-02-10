@@ -1,0 +1,62 @@
+<!--Banner-->
+ 	<% if session[:position] == ['Admin']  %>
+	  <div class="row navbar pretty" id="nav1">
+	  <!-- Toggle for mobile navigation, targeting the <ul> -->
+	  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
+	  <h1 class="four columns logo">
+	    <%= 'Storyboards' %>    
+	  </h1>
+
+	  <ul class="eight columns">
+	  	<% @admin = Admin.find(session[:admin_id].to_s.to_sym) if session[:position] == ['Admin'] %>
+	  	<li><%= link_to "Welcome! #{@admin.name}", "#" %></li>
+	    <li><%= link_to 'Main Page', admin_path(session[:admin_id].to_s.to_sym) %></li>
+	    <li>
+	    	<a href="#">Admin</a>
+	    	<div class="dropdown">
+	        <ul>
+	          <li><%= link_to 'Admins Catalog', admins_path %></li>
+	          <li><%= link_to 'New Admin', new_admin_path %></li>
+	        </ul>
+	      </div>
+	    </li>
+	    <li>
+	      <a href="#">Project</a>
+	      <div class="dropdown">
+	        <ul>
+	          <li><%= link_to 'Project Catalog', projects_path %></li>
+	          <li><%= link_to 'New Project', new_project_path %></li>
+	        </ul>
+	      </div>
+	    </li>
+	    <li>
+	    	<a href="#">Developer</a>
+	    	<div class="dropdown">
+	        <ul>
+	          <li><%= link_to 'Developer Catalog', developers_path %></li>
+	          <li><%= link_to 'New Developer', new_developer_path %></li>
+	        </ul>
+	      </div>
+	    </li>
+	    <li><%= link_to 'Story Catalog', stories_path %></li>
+	    <li><%= link_to 'Logout', logout_path, :method => :delete %></li>
+	  </ul>
+	</div>
+  <% elsif session[:position] == ['Developer'] %>
+    <div class="row navbar pretty" id="nav1">
+	  <!-- Toggle for mobile navigation, targeting the <ul> -->
+	  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
+	  <h1 class="four columns logo">
+	    <%= 'Storyboards' %>    
+	  </h1>
+
+  	  <ul class="eight columns">
+  	  	<% @developer = Developer.find(session[:developer_id].to_s.to_sym) if session[:position] == ['Developer']%>
+    	<li><%= link_to "Welcome! #{@developer.name}", "#" %></li>
+	    <li><%= link_to 'Main Page', developer_path(session[:developer_id].to_s.to_sym) %></li>
+	    
+	    <li><%= link_to 'My Project', project_path(@developer.project)%></li>
+	    <li><%= link_to 'Logout', logout_path, :method => :delete %></li>
+	  </ul>
+	</div>
+ <% end %>
