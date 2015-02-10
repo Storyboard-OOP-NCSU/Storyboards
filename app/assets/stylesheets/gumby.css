@@ -1480,6 +1480,7 @@ i.icon-logo-db:before { content: "\f603"; height: inherit; }
 
 /* Form Styles */
 form { margin: 0 0 18px; }
+.login_form { margin: 8% 60% 18px; }
 form label { display: block; font-size: 16px; font-size: 1rem; line-height: 1.625em; cursor: pointer; margin-bottom: 9px; }
 form label.inline { display: inline-block; padding-right: 20px; }
 form dt { margin: 0; }
