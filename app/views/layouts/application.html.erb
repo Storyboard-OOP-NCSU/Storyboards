@@ -7,10 +7,12 @@
   <%= javascript_include_tag :modernizr %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+  <% if request.original_fullpath == '/login' || request.original_url == 'http://0.0.0.0:3000/' || request.original_url == 'http://localhost:3000/' %>
+	<body style="background-image: url(<%= asset_path 'rails.jpg' %>); background-size:100%; overflow-y:hidden;">
+  <% else %>
+  	<body>
+  <% end %>
   <%= render(:partial => 'layouts/navigation') %>
-
   <%= yield %>
-
 </body>
 </html>

@@ -1481,6 +1481,14 @@ i.icon-logo-db:before { content: "\f603"; height: inherit; }
 /* Form Styles */
 form { margin: 0 0 18px; }
 .login_form { margin: 8% 60% 18px; }
+.field_set { background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */ }
+.field_set:hover { background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.95;
+    filter: alpha(opacity=95); /* For IE8 and earlier */ }
 form label { display: block; font-size: 16px; font-size: 1rem; line-height: 1.625em; cursor: pointer; margin-bottom: 9px; }
 form label.inline { display: inline-block; padding-right: 20px; }
 form dt { margin: 0; }
