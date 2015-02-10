@@ -42,6 +42,7 @@ class DevelopersController < ApplicationController
   # PATCH/PUT /developers/1.json
   def update
     respond_to do |format|
+      Story.delete_developer
       if @developer.update(developer_params)
         format.html { redirect_to @developer, notice: 'Developer was successfully updated.' }
         format.json { render :show, status: :ok, location: @developer }

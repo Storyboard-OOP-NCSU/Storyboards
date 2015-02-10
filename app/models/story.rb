@@ -15,5 +15,13 @@ class Story < ActiveRecord::Base
     		end
    		end
     end
+    def delete_developer
+      Story.all.each do |story|
+        if story.developers.length == 2
+          other = story.developers[[0,1].sample]
+          story.developers.delete(other)
+        end
+      end
+    end
   end
 end
