@@ -40,7 +40,9 @@
         <tr>
           <td><%= line_item.developer.name %></td>
           <td><%= line_item.developer.email %></td>
-          <td><%= link_to 'Remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if session[:position] == ['Developer'] %>
+          	<td><%= link_to 'Remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
     <% end %>
     </tbody>

@@ -24,18 +24,25 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    # @line_item = LineItem.new(line_item_params)
-    @developer = Developer.find(params[:developer_id])
     story = Story.find(params[:story_id])
-    @line_item = story.line_items.build(:developer => @developer)
+    if LineItem.story_line_item_less2?(story)
+      @developer = Developer.find(params[:developer_id])
+   	 	LineItem.ensure_developer_uniqueness(@developer)
+    	@line_item = story.line_items.build(:developer => @developer)
 
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item.story, notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
-      else
-        format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+    	respond_to do |format|
+      	if @line_item.save
+        	format.html { redirect_to @line_item.story.project, notice: 'Line item was successfully created.' }
+        	format.json { render :show, status: :created, location: @line_item }
+      	else
+       		format.html { render @line_item.story.project }
+        	# format.json { render json: @line_item.story.project, status: :unprocessable_entity }
+      	end
+    	end
+    else
+    	respond_to do |format|
+    		format.html { redirect_to story.project , notice: 'other 2 developers already signed this story!'}
+      	# format.json { render json: story.project, notice: '2 other developers already sign' }
       end
     end
   end

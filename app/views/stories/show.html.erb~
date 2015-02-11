@@ -36,10 +36,10 @@
     </thead>
 
     <tbody>
-    <% @story.line_items.each do |item| %>
+    <% @story.line_items.each do |line_item| %>
         <tr>
-          <td><%= item.developer.name %></td>
-          <td><%= item.developer.email %></td>
+          <td><%= line_item.developer.name %></td>
+          <td><%= line_item.developer.email %></td>
           <td><%= link_to 'Remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>
