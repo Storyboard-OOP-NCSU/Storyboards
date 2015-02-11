@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :developers
-  has_many :stories
+  has_many :stories, :dependent => :destroy
   validates :title, :presence => true
   validates :description, :presence => true
   

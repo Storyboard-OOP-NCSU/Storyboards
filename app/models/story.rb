@@ -8,13 +8,6 @@ class Story < ActiveRecord::Base
   validates :project, :presence => true
   
   class << self
-    def checkstatus
-    	Story.all.each do |story|
-    		if story.project == nil
-    			story.destroy
-    		end
-   		end
-    end
     def delete_developer
       Story.all.each do |story|
         if story.developers.length == 2
