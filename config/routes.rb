@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :line_items
+
   resources :stories
 
   resources :developers
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+  
+  # post 'projects/:id' => 'line_items#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,7 +5,6 @@ class CreateDevelopers < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.references :project
-      t.references :story
 
       t.timestamps null: false
     end

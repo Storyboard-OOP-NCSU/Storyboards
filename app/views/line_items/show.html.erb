@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @line_item.story_id %>
+</p>
+
+<p>
+  <strong>Developer:</strong>
+  <%= @line_item.developer_id %>
+</p>
+
+<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+<%= link_to 'Back', line_items_path %>

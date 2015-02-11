@@ -16,15 +16,15 @@
         </div>
         <div>
           <strong>Story:</strong>
-          <% if @developer.story.present? %>
-            <%= @developer.story.title %>
+          <% if @developer.line_item.present? %>
+            <%= @developer.line_item.story.title %>
           <% else %>
           	<%= 'none' %>
           <% end %>
         </div>
         <br>
         <div class="medium btn pill-left default">
-          <%= link_to 'Edit', edit_developer_path(@developer) %>
+          <%= link_to 'Change Password', edit_developer_path(@developer) %>
         </div>
         <div class="medium btn pill-right default">
           <%= link_to 'Project', project_path(@developer.project) %>

@@ -36,10 +36,10 @@
     </thead>
 
     <tbody>
-    <% @story.developers.each do |developer| %>
+    <% @story.line_items.each do |item| %>
         <tr>
-          <td><%= developer.name %></td>
-          <td><%= developer.email %></td>
+          <td><%= item.developer.name %></td>
+          <td><%= item.developer.email %></td>
         </tr>
     <% end %>
     </tbody>

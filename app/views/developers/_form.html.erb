@@ -41,11 +41,6 @@
     	<%= f.label 'change password' %>
     	<%= f.text_field :password %>
     </div>
-    <br>
-    <div>
-        <%= f.label 'sign up story' %>
-        <%= select("developer", "story_id", Developer.find_by_id(session[:developer_id]).project.stories.collect{ |c| [ c.title, c.id] }) %>
-    </div>
     <% end %>
     
     <br>

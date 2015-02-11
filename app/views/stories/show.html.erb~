@@ -36,13 +36,28 @@
     </thead>
 
     <tbody>
-    <% @project.developers.each do |developer| %>
+    <% @story.line_items.each do |item| %>
         <tr>
-          <td><%= developer.name %></td>
+          <td><%= item.developer.name %></td>
           <td><%= developer.email %></td>
         </tr>
     <% end %>
     </tbody>
   </table>
 </fieldset>
-<%= link_to 'Back', project_path(@story.project) %>
+
+<% if session[:position] == ['Developer'] %>
+  <div class="medium oval btn default">
+    <%= link_to 'Back', project_path(@story.project) %>
+  </div>
+<% elsif session[:position] == ['Admin'] %>
+    <% if params[:back] == 'project'%>
+      <div class="medium oval btn default">
+      <%= link_to 'Back', project_path(@story.project) %>
+    <% else %>
+      <%= link_to 'Back', stories_path%>
+    <% end %>
+  </div>
+<% end %>
+
+

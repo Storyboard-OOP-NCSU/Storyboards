@@ -42,7 +42,6 @@ class DevelopersController < ApplicationController
   # PATCH/PUT /developers/1.json
   def update
     respond_to do |format|
-      Story.delete_developer
       if @developer.update(developer_params)
         format.html { redirect_to @developer, notice: 'Developer was successfully updated.' }
         format.json { render :show, status: :ok, location: @developer }
@@ -71,6 +70,6 @@ class DevelopersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def developer_params
-      params.require(:developer).permit(:project_id, :story_id, :name, :email, :password)
+      params.require(:developer).permit(:project_id, :name, :email, :password)
     end
 end
