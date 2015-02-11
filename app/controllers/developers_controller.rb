@@ -29,7 +29,7 @@ class DevelopersController < ApplicationController
 
     respond_to do |format|
       if @developer.save
-        format.html { redirect_to developers_path, notice: 'Developer was successfully created.' }
+        format.html { redirect_to developers_path, notice: "Developer #{@developer.name} was successfully created." }
         format.json { render :show, status: :created, location: @developer }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class DevelopersController < ApplicationController
   def update
     respond_to do |format|
       if @developer.update(developer_params)
-        format.html { redirect_to @developer, notice: 'Developer was successfully updated.' }
+        format.html { redirect_to @developer, notice: "Developer #{@developer.name} was successfully updated." }
         format.json { render :show, status: :ok, location: @developer }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class DevelopersController < ApplicationController
   def destroy
     @developer.destroy
     respond_to do |format|
-      format.html { redirect_to developers_url, notice: 'Developer was successfully destroyed.' }
+      format.html { redirect_to developers_url, notice: "Developer was successfully destroyed." }
       format.json { head :no_content }
     end
   end

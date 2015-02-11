@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
 
     	respond_to do |format|
       	if @line_item.save
-        	format.html { redirect_to @line_item.story.project, notice: 'Line item was successfully created.' }
+        	format.html { redirect_to @line_item.story.project, notice: 'You successfully signed in one story.' }
         	format.json { render :show, status: :created, location: @line_item }
       	else
        		format.html { render @line_item.story.project }
@@ -41,7 +41,7 @@ class LineItemsController < ApplicationController
     	end
     else
     	respond_to do |format|
-    		format.html { redirect_to story.project , notice: 'other 2 developers already signed this story!'}
+    		format.html { redirect_to story.project , notice: 'Other 2 developers already signed in this story!'}
       	# format.json { render json: story.project, notice: '2 other developers already sign' }
       end
     end
