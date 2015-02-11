@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
     # @line_item = LineItem.new(line_item_params)
     @developer = Developer.find(params[:developer_id])
     story = Story.find(params[:story_id])
-    @line_item = story.line_items.build(:developer => developer)
+    @line_item = story.line_items.build(:developer => @developer)
 
     respond_to do |format|
       if @line_item.save
@@ -57,9 +57,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+  	story = line_item.story
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to story, notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

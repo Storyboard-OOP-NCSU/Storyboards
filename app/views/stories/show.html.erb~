@@ -39,7 +39,8 @@
     <% @story.line_items.each do |item| %>
         <tr>
           <td><%= item.developer.name %></td>
-          <td><%= developer.email %></td>
+          <td><%= item.developer.email %></td>
+          <td><%= link_to 'Remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>
     </tbody>
