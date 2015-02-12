@@ -30,4 +30,5 @@ bower.json
 
 # RubyMine
 .idea*~
+/.idea
 .*~
