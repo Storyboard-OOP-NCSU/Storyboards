@@ -7,12 +7,15 @@ class Developer < ActiveRecord::Base
   validates :project, :presence => true
   
   class << self
-    def authenticate(name, password)
-      if developer = find_by_name(name)
-        if developer.password == password
-          developer
-        end
+    def authenticate(email, password)
+    	user = nil
+    	Developer.all.each do |developer|
+      	if developer.email == email and 
+      		developer.password == password
+          	user = developer
+      	end
       end
+      user
     end
   end
 end

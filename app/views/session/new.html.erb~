@@ -1,8 +1,7 @@
-<div class="depot_form" >
+<div class="login_form">
   <%= form_tag do %>
-      <fieldset>
-        <legend>Please Log In</legend>
-        
+      <fieldset class="field_set">      
+        <br>
         <div>
           <label for="name" >Name:</label>
           <%= text_field_tag :name, params[:name] %>
@@ -13,10 +12,15 @@
         </div>
         <br>
         <div>
-          <label for="position" ></label>
-          <% option = ['Developer','Admin'] %>
-          <%= select("position", params[:position] , option.collect{ |c| [c, c] })%>
-          <%= submit_tag 'Login'%>
+          <div>
+            <label for="position" ></label>
+            <% option = ['Developer','Admin'] %>
+            <%= select("position", params[:position] , option.collect{ |c| [c, c] }, :selected => 'Admin')%>
+          </div>
+          <br>
+          <div class="pretty medium primary btn">
+            <%= submit_tag 'Login'%>
+          </div>
         </div>
       </fieldset>
   <% end %>

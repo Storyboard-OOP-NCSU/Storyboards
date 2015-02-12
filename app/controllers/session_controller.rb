@@ -1,6 +1,4 @@
 class SessionController < ApplicationController
-  
-  #before_action :confirm_logged_in, except: [:create, :destroy]
 
   def new
   end
@@ -8,19 +6,19 @@ class SessionController < ApplicationController
   def create
  		session[:position] = params[:position]
 	  if session[:position] == ['Admin']
- 	  	if admin = Admin.authenticate(params[:name], params[:password])
+ 	  	if admin = Admin.authenticate(params[:email], params[:password])
   	    session[:admin_id] = admin.id
  	    	redirect_to admin
   	  else
       	redirect_to login_url
  	  	end
 		elsif session[:position] == ['Developer']
-				if developer = Developer.authenticate(params[:name], params[:password])
-  	    	session[:developer_id] = developer.id
- 	    		redirect_to developer
-  	 		else
-      		redirect_to login_url
- 	  		end
+			if developer = Developer.authenticate(params[:email], params[:password])
+  	    session[:developer_id] = developer.id
+ 	    	redirect_to developer
+  	 	else
+      	redirect_to login_url
+ 	  	end
 		else
 				redirect_to login_url
 		end
