@@ -24,7 +24,6 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
-        <th colspan="3"></th>
       </tr>
       </thead>
 
@@ -50,7 +49,7 @@
   	    <th>Description</th>
    	 	  <th>Point</th>
    	 	  <th>Stages</th>
-    	  <th colspan="3"></th>
+    	  <th colspan="4"></th>
    	 </tr>
   	 </thead>
   	
@@ -71,6 +70,8 @@
           	<% if developer.line_item.present? %>
           		<% if developer.line_item.story == story %>
           			<td><%= link_to 'Edit Story', edit_story_path(developer.line_item.story) %></td>
+          		<% else %>
+          			<td></td>
           		<% end %>
           	<% else %>
           		<td></td>
@@ -82,22 +83,28 @@
    	 </tbody>
   	</table>
 
-    <p>
-      <strong>Total Points:</strong>
-      <br>Analysis:
-      <%= @project.sum_point('Analysis') %>
-      <br>Ready For Dev:
-      <%= @project.sum_point('Ready For Dev') %>
-      <br>In Dev:
-      <%= @project.sum_point('In Dev') %>
-      <br>Dev Complete:
-      <%= @project.sum_point('Dev Complete') %>
-      <br>In test:
-      <%= @project.sum_point('In Test') %>
-      <br>Complete:
-      <%= @project.sum_point('Complete')%>
-    </p>
 
+		<table>
+			<% stages = ['Analysis','Ready For Dev','In Dev','Dev Complete','In Test','Complete'] %>
+  	 <thead>
+   	 <tr>
+   	 		<th>Stages</th>
+  	    <% stages.each do |stage|%>
+  	    	<th><%= stage %></th>
+  	    <% end %>
+
+   	 </tr>
+  	 </thead>
+  	 
+  	 <tbody>
+  	 		<tr>
+  	 			<td><%= 'Sum of Points'%></td>
+  	 			<% stages.each do |stage|%>
+  	 				<td><%= @project.sum_point[stage] %></td>
+  	 			<% end %>
+  	 		</tr>
+  	 </tbody>
+		</table>
 </fieldset>
 <% end %>
 

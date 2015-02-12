@@ -4,13 +4,13 @@ class Project < ActiveRecord::Base
   validates :title, :presence => true
   validates :description, :presence => true
   
-  def sum_point(stage)
-  	s = 0
+  def sum_point
+  	points = {'Analysis' => 0, 'Ready For Dev' => 0, 'In Dev' => 0,
+  			 'Dev Complete' => 0, 'In Test' => 0, 'Complete' => 0}
   	stories.each do |story|
-      if story.stages == stage
-  		s = s + story.point
-  	end
+  		points[story.stages] += story.point
     end
-    s
+    points
   end
+  
   end

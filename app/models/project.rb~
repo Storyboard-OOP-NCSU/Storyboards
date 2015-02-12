@@ -1,14 +1,16 @@
 class Project < ActiveRecord::Base
   has_many :developers
-  has_many :stories, :dependence => :destroy
+  has_many :stories, :dependent => :destroy
   validates :title, :presence => true
   validates :description, :presence => true
   
   def sum_point
-  	s = 0
+  	points = {'Analysis' => 0, 'Ready For Dev' => 0, 'In Dev' => 0,
+  			 'Dev Complete' => 0, 'In Test' => 0, 'Complete' => 0}
   	stories.each do |story|
-  		s = s + story.point
-  	end
-  	s
+  		points[story.stage] += story.point
+    end
+    points
   end
-end
+  
+  end
