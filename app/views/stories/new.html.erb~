@@ -1,4 +1,0 @@
-<h2>New Story</h2>
-
-<%= render 'form' %><br>
-<%= link_to 'Back', project_path(Developer.find_by_id(session[:developer_id]).project) %>

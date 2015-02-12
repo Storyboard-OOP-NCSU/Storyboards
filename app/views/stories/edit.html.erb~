@@ -1,4 +1,0 @@
-<h1>Editing Story</h1>
-
-<%= render 'form' %><br>
-<%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>

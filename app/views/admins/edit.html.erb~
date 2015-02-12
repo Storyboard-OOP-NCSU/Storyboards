@@ -1,6 +1,0 @@
-<h2>Editing Admin</h2>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @admin %> |
-<%= link_to 'Back', Admin.all.find_by_id(session[:admin_id]) %>

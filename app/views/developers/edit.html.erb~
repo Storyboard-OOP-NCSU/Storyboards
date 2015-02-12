@@ -1,5 +1,0 @@
-<h2>Editing Developer</h2>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', @developer %>
