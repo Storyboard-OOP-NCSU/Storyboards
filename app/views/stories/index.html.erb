@@ -31,8 +31,8 @@
         <td><%= link_to 'Show', story %></td>
         <% if session[:position] == ['Developer'] %>
           <td><%= link_to 'Edit', edit_story_path(story) %></td>
-        <% end %>
         <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
