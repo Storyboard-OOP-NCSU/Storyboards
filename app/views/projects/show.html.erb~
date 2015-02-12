@@ -24,7 +24,6 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
-        <th colspan="9"></th>
       </tr>
       </thead>
 
@@ -84,7 +83,8 @@
    	 </tbody>
   	</table>
 
-
+	<fieldset>
+  	<legend>Total Points</legend>
 		<table>
 			<% stages = ['Analysis','Ready For Dev','In Dev','Dev Complete','In Test','Complete'] %>
   	 <thead>
@@ -99,7 +99,7 @@
   	 
   	 <tbody>
   	 		<tr>
-  	 			<td><%= 'Sum of Points'%></td>
+  	 			<td><%= 'Points'%></td>
   	 			<% stages.each do |stage|%>
   	 				<td><%= @project.sum_point[stage] %></td>
   	 			<% end %>
