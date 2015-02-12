@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
     story = Story.find(params[:story_id])
     if LineItem.story_line_item_less2?(story)
       @developer = Developer.find(params[:developer_id])
-   	 	LineItem.ensure_developer_uniqueness(@developer)
+      @developer.line_item.delete
     	@line_item = story.line_items.build(:developer => @developer)
 
     	respond_to do |format|
