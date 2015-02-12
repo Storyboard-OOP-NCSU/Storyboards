@@ -1,3 +1,10 @@
+<% unless notice == nil %>
+  <% if notice == 'Invaild login!'%>
+    <p class="danger alert"><%= notice %></p>
+  <% else %>
+    <p class="success alert"><%= notice %></p>
+  <% end %>
+<% end %>
 <div class="login_form">
   <%= form_tag do %>
       <fieldset class="field_set">      
