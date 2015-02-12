@@ -12,10 +12,7 @@
       <%= @project.description %>
     </p>
     
-    <p>
-      <strong>Total Points:</strong>
-      <%= @project.sum_point %>
-    </p>
+
    </fieldset>
 <% end %>
 
@@ -82,6 +79,23 @@
    	 <% end %>
    	 </tbody>
   	</table>
+
+    <p>
+      <strong>Total Points:</strong>
+      <br>Analysis:
+      <%= @project.sum_point('Analysis') %>
+      <br>Ready For Dev:
+      <%= @project.sum_point('Ready For Dev') %>
+      <br>In Dev:
+      <%= @project.sum_point('In Dev') %>
+      <br>Dev Complete:
+      <%= @project.sum_point('Dev Complete') %>
+      <br>In test:
+      <%= @project.sum_point('In Test') %>
+      <br>Complete:
+      <%= @project.sum_point('Complete')%>
+    </p>
+
 </fieldset>
 <% end %>
 
