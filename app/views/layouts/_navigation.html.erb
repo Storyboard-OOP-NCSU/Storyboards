@@ -1,5 +1,5 @@
 <!--Banner-->
- 	<% if session[:position] == ['Admin']  %>
+ 	<% if session[:position] == ['Admin'] && session[:admin_id] != nil %>
 	  <div class="row navbar pretty" id="nav1">
 	  <!-- Toggle for mobile navigation, targeting the <ul> -->
 	  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
@@ -8,7 +8,7 @@
 	  </h1>
 
 	  <ul class="eight columns">
-	  	<% @admin = Admin.find(session[:admin_id].to_s.to_sym) if session[:position] == ['Admin'] %>
+	  	<% @admin = Admin.find(session[:admin_id].to_s.to_sym)%>
 	  	<li><%= link_to "Welcome! #{@admin.name}", "#" %></li>
 	    <li><%= link_to 'Main Page', admin_path(session[:admin_id].to_s.to_sym) %></li>
 	    <li>
@@ -42,7 +42,7 @@
 	    <li><%= link_to 'Logout', logout_path, :method => :delete %></li>
 	  </ul>
 	</div>
-  <% elsif session[:position] == ['Developer'] %>
+  <% elsif session[:position] == ['Developer'] && session[:developer_id] != nil %>
     <div class="row navbar pretty" id="nav1">
 	  <!-- Toggle for mobile navigation, targeting the <ul> -->
 	  <a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
@@ -51,7 +51,7 @@
 	  </h1>
 
   	  <ul class="eight columns">
-  	  	<% @developer = Developer.find(session[:developer_id].to_s.to_sym) if session[:position] == ['Developer']%>
+  	  	<% @developer = Developer.find(session[:developer_id].to_s.to_sym)%>
     	<li><%= link_to "Welcome! #{@developer.name}", "#" %></li>
 	    <li><%= link_to 'Main Page', developer_path(session[:developer_id].to_s.to_sym) %></li>
 	    
