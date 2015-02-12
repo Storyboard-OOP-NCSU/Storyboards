@@ -12,10 +12,7 @@
       <%= @project.description %>
     </p>
     
-    <p>
-      <strong>Total Points:</strong>
-      <%= @project.sum_point %>
-    </p>
+
    </fieldset>
 <% end %>
 
@@ -59,6 +56,7 @@
   	
    	 <tbody>
    	 <% @project.stories.each do |story| %>
+   	 <% if story.stages != 'Complete' %>
         <tr>
           <td><%= story.title %></td>
           <td><%= story.description %></td>
@@ -72,16 +70,34 @@
           	<% developer = Developer.find_by_id(session[:developer_id]) %>
           	<% if developer.line_item.present? %>
           		<% if developer.line_item.story == story %>
-          			<td><%= link_to 'Edit Story', edit_story_path(developer.story) %></td>
+          			<td><%= link_to 'Edit Story', edit_story_path(developer.line_item.story) %></td>
           		<% end %>
           	<% else %>
           		<td></td>
           	<% end %>
           <% end %>
         </tr>
+     <% end %>
    	 <% end %>
    	 </tbody>
   	</table>
+
+    <p>
+      <strong>Total Points:</strong>
+      <br>Analysis:
+      <%= @project.sum_point('Analysis') %>
+      <br>Ready For Dev:
+      <%= @project.sum_point('Ready For Dev') %>
+      <br>In Dev:
+      <%= @project.sum_point('In Dev') %>
+      <br>Dev Complete:
+      <%= @project.sum_point('Dev Complete') %>
+      <br>In test:
+      <%= @project.sum_point('In Test') %>
+      <br>Complete:
+      <%= @project.sum_point('Complete')%>
+    </p>
+
 </fieldset>
 <% end %>
 

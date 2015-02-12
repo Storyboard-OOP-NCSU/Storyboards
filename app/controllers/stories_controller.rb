@@ -34,15 +34,8 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-      	if @story.stages == 'Complete'
-      		project = @story.project
-    			@story.destroy
-      		format.html { redirect_to project, notice: 'Story was Completed.' }
-      		format.json { head :no_content }
-      	else
-        	format.html { redirect_to @story, notice: 'Story was successfully created.' }
-        	format.json { render :show, status: :created, location: @story }
-        end
+      	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
+      	format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -55,15 +48,8 @@ class StoriesController < ApplicationController
   def update
     respond_to do |format|
       if @story.update(story_params)
-      	if @story.stages == 'Complete'
-      		project = @story.project
-    			@story.destroy
-      		format.html { redirect_to project, notice: 'Story was Completed.' }
-      		format.json { head :no_content }
-      	else
-        	format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-        	format.json { render :show, status: :ok, location: @story }
-        end
+      	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
+      	format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @story.errors, status: :unprocessable_entity }

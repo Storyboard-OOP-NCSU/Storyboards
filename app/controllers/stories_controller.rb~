@@ -1,11 +1,17 @@
 class StoriesController < ApplicationController
+  before_action :confirm_logged_in
   before_action :set_story, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.all if params[:search] == nil
+    @stories = Story.find_by_sql("SELECT * FROM stories WHERE 
+      title LIKE '%#{params[:search]}%' 
+      OR description LIKE '%#{params[:search]}%' ") unless params[:search] == nil
   end
+
+  
 
   # GET /stories/1
   # GET /stories/1.json
@@ -28,8 +34,8 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story, notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
+      	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
+      	format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -42,15 +48,8 @@ class StoriesController < ApplicationController
   def update
     respond_to do |format|
       if @story.update(story_params)
-      	if @story.stages == 'Complete'
-      		project = @story.project
-    			@story.destroy
-      		format.html { redirect_to project, notice: 'Story was Completed.' }
-      		format.json { head :no_content }
-      	else
-        	format.html { redirect_to @story, notice: 'Story was successfully updated.' }
-        	format.json { render :show, status: :ok, location: @story }
-        end
+      	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
+      	format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @story.errors, status: :unprocessable_entity }
