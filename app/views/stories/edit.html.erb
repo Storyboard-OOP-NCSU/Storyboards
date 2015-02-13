@@ -1,4 +1,40 @@
-<%= render 'form' %><br>
+<%= form_for(@story) do |f| %>
+    <fieldset>
+      <% if @story.title == nil %>
+          <legend>New Project</legend>
+      <% else %>
+          <legend>Edit Story</legend>
+      <% end %>
+
+      <% if @story.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+            <ul>
+              <% @story.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+
+      <div>
+        <%= f.label :stages %>
+        <% option = ['Analysis','Ready For Dev','In Dev',
+                     'Dev Complete','In Test','Complete'] %>
+        <%= select("story", "stages", option.collect{ |c| [c, c] }) %>
+      </div>
+      <br>
+
+
+      <div class="pretty medium primary btn">
+        <%= f.submit %>
+      </div>
+    </fieldset>
+<% end %>
+
+
 
 <div class="medium oval btn default">
 	<%= link_to 'Back', project_path(@story.project) %>

@@ -66,16 +66,9 @@
           	<td><%= link_to 'Sign', line_items_path(:story_id => story, :developer_id => session[:developer_id]), method: :post %></td>
           	<td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
-          	<% developer = Developer.find_by_id(session[:developer_id]) %>
-          	<% if developer.line_item.present? %>
-          		<% if developer.line_item.story == story %>
-          			<td><%= link_to 'Edit Story', edit_story_path(developer.line_item.story) %></td>
-          		<% else %>
-          			<td></td>
-          		<% end %>
-          	<% else %>
-          		<td></td>
-          	<% end %>
+              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>
+
+
           <% end %>
         </tr>
      <% end %>
