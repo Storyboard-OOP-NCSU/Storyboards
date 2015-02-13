@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 gem 'therubyracer'
 gem 'execjs'
@@ -12,6 +13,8 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'rails_12factor'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
