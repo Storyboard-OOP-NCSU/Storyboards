@@ -57,6 +57,7 @@ GEM
     minitest (5.5.0)
     modernizr-rails (2.7.1)
     multi_json (1.10.1)
+    pg (0.18.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -123,6 +124,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   modernizr-rails
+  pg
   rails (= 4.1.7)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
