@@ -41,7 +41,7 @@ class LineItemsController < ApplicationController
     	end
     else
     	respond_to do |format|
-    		format.html { redirect_to story.project , notice: 'Other 2 developers already signed in this story!'}
+    		format.html { redirect_to story.project , notice: 'Other 2 developers already signed in this story!   You can replace one in Show page.'}
       	# format.json { render json: story.project, notice: '2 other developers already sign' }
       end
     end
