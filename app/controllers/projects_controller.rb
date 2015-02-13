@@ -6,11 +6,17 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @stories = @project.stories if params[:search] == nil
+    @stories = Story.find_by_sql("SELECT * FROM stories WHERE 
+      project_id='#{@project.id}' AND
+      (title LIKE '%#{params[:search]}%' 
+      OR description LIKE '%#{params[:search]}%') ") unless params[:search] == nil
   end
 
   # GET /projects/new

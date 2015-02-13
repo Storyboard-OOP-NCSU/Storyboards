@@ -39,6 +39,14 @@
   </fieldset>
 <% end %>
 
+<h4>stories search:</h4>
+<%= form_tag project_path(@project.id), :method => 'get' do %>
+    <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
+
 <%= form_tag do %>
   <fieldset>
   	<legend>Story Board</legend>
@@ -54,7 +62,7 @@
   	 </thead>
   	
    	 <tbody>
-   	 <% @project.stories.each do |story| %>
+   	 <% @stories.each do |story| %>
    	 <% if story.stages != 'Complete' %>
         <tr>
           <td><%= story.title %></td>
@@ -78,11 +86,6 @@
             </td>
               <td><%= link_to 'Change Stage', edit_story_path(story) %></td>
               <td>
-
-
-
-
-
               </td>
         </tr>
           <% end %>
