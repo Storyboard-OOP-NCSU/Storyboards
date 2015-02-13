@@ -14,6 +14,8 @@ group :production do
   gem 'pg'
 end
 
+gem 'puma', '~> 2.11.1'
+
 gem 'yaml_db'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -51,4 +53,4 @@ gem 'spring',        group: :development
 # Use Gumby Front End Framework
 gem 'gumby-framework'
 gem "modernizr-rails"
-gem "gumby-framework"
+
