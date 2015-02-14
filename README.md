@@ -1,11 +1,11 @@
 # Storyboards
 Storyboards
 
-Admin account:
-email: admin@ncsu.edu
+Admin account:<br/>
+email: admin@ncsu.edu<br/>
 psw  : admin
 
 
-Developer account:
-email: sam@ncsu.edu
+Developer account:<br/>
+email: sam@ncsu.edu<br/>
 psw  : 12345
