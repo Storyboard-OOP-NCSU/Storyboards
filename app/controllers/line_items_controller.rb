@@ -27,7 +27,9 @@ class LineItemsController < ApplicationController
     story = Story.find(params[:story_id])
     if LineItem.story_line_item_less2?(story)
       @developer = Developer.find(params[:developer_id])
-      @developer.line_item.delete
+      if @developer.line_item.present?
+          @developer.line_item.delete
+      end
     	@line_item = story.line_items.build(:developer => @developer)
 
     	respond_to do |format|
