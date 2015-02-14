@@ -1,4 +1,4 @@
-<p class="success alert"><%= notice %></p>
+<% unless notice == nil %><p class="success alert"><%= notice %></p><% end %>
 <h2> Welcome! <%= @developer.name %> </h2>
 <%= form_tag do %>
      <fieldset>
