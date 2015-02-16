@@ -27,7 +27,7 @@ MyApp::Application.config.secret_token = ENV['SECRET_TOKEN']
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
-
+/config/application.yml
 # RubyMine
 .idea*~
 /.idea

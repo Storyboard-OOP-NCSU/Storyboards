@@ -29,6 +29,7 @@ class DevelopersController < ApplicationController
 
     respond_to do |format|
       if @developer.save
+        UserMailer.welcome_email(@developer).deliver
         format.html { redirect_to developers_path, notice: "Developer #{@developer.name} was successfully created." }
         format.json { render :show, status: :created, location: @developer }
       else

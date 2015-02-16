@@ -1,9 +1,8 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreplay@Storyboard-OOP-NCSU.winbobob"
 
-  def welcome_email(user)
-  	@user = user
-  	@url = "0.0.0.0:3000/login"
+  def welcome_email(developer)
+  	@developer = developer
   	mail(to: @developer.email, subject: "Welcome to Storyboards!!")
   end	
 end
