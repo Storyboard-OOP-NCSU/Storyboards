@@ -11,5 +11,5 @@ email: sam@ncsu.edu<br/>
 psw  : 12345
 
 Bonus Functionalities：<br/>
-1. Actually sending emails on registering Developers
+1. Actually sending emails on registering Developers<br/>
 2. Add Cucumber Test Framework
