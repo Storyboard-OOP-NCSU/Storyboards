@@ -10,6 +10,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+#new-added gems
 group :production do
   gem 'pg'
 end
@@ -19,6 +20,17 @@ gem 'puma', '~> 2.11.1'
 gem 'figaro'
 
 gem 'yaml_db'
+
+# Use Gumby Front End Framework
+gem 'gumby-framework'
+gem "modernizr-rails"
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -52,7 +64,5 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Use Gumby Front End Framework
-gem 'gumby-framework'
-gem "modernizr-rails"
+
 
