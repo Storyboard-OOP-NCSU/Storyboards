@@ -1,5 +1,10 @@
 <%= render 'form' %>
 
 <div class="medium oval btn default">
+<% if session[:position] == ['Developer'] %>
 	<%= link_to 'Back', @developer %>
+<% end %>
+<% if session[:position] == ['Admin'] %>
+	<%= link_to 'Back', developers_path %>
+<% end %>
 </div>

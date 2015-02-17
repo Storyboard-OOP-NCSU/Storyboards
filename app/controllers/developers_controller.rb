@@ -44,8 +44,14 @@ class DevelopersController < ApplicationController
   def update
     respond_to do |format|
       if @developer.update(developer_params)
-        format.html { redirect_to @developer, notice: "Developer #{@developer.name} was successfully updated." }
-        format.json { render :show, status: :ok, location: @developer }
+      	if session[:position] == ['Developer']
+        	format.html { redirect_to @developer, notice: "Developer #{@developer.name} was successfully updated." }
+        	format.json { render :show, status: :ok, location: @developer }
+        end
+        if session[:position] == ['Admin']
+        	format.html { redirect_to developers_path, notice: "Developer #{@developer.name} was successfully updated." }
+        	format.json { render :show, status: :ok, location: @developer }
+        end
       else
         format.html { render :edit }
         format.json { render json: @developer.errors, status: :unprocessable_entity }

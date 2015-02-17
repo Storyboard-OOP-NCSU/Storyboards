@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to @admin, notice: "Admin #{@admin.name} was successfully created." }
+        format.html { redirect_to admins_path, notice: "Admin #{@admin.name} was successfully created." }
         format.json { render :show, status: :created, location: @admin }
       else
         format.html { render :new }
