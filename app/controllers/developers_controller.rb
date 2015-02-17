@@ -49,6 +49,10 @@ class DevelopersController < ApplicationController
         	format.json { render :show, status: :ok, location: @developer }
         end
         if session[:position] == ['Admin']
+        	# change developer's project, his assigned story need to delete
+        	if @developer.line_item.present?
+          	@developer.line_item.delete
+     		 	end
         	format.html { redirect_to developers_path, notice: "Developer #{@developer.name} was successfully updated." }
         	format.json { render :show, status: :ok, location: @developer }
         end
