@@ -7,7 +7,7 @@ psw  : admin
 
 
 Developer account:<br/>
-email: sam@ncsu.edu<br/>
+email: fred2@ncsu.edu<br/>
 psw  : 12345
 
 Bonus Functionalities：<br/>
