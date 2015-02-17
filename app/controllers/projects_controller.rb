@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  
+  before_action :correct_developer, only: [:show]
+
   # GET /projects
   # GET /projects.json
   def index
@@ -77,5 +78,14 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :description)
+    end
+
+    def correct_developer
+      @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+      if session[:position] == ['Developer'] && @developer.project != @project
+        flash[:notice] = "Access denied!"
+        redirect_to project_path(@developer.project) unless session[:admin_id] == nil
+        redirect_to projects_path unless session[:developer_id] == nil
+      end
     end
 end
