@@ -1,8 +1,9 @@
 class DevelopersController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_developer, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_developer, only: [:show, :edit, :update] 
   before_action :correct_developer, only: [:show, :edit, :update]
-  before_action :admin_only, only: [:index, :new, :destroy]
+  before_action :admin_only, except: [:show, :edit, :update]
   
   # GET /developers
   # GET /developers.json
@@ -84,6 +85,13 @@ class DevelopersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def developer_params
       params.require(:developer).permit(:project_id, :name, :email, :password)
+    end
+
+    def logged_in_developer
+      if session[:position] == ['Admin']
+         flash[:notice] = "Access denied!"
+         redirect_to developers_path
+      end
     end
 
     #cannot view other developers' pages

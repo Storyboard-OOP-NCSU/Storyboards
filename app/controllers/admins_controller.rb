@@ -1,8 +1,8 @@
 class AdminsController < ApplicationController
   before_action :confirm_logged_in
-  before_action :logged_in_admin, only: [:new, :index, :show]
+  before_action :logged_in_admin
   before_action :set_admin, only: [:show, :edit, :update]
-  before_action :correct_admin, only: [:show, :edit, :update]
+  before_action :correct_admin
 
   # GET /admins
   # GET /admins.json
@@ -43,6 +43,15 @@ class AdminsController < ApplicationController
   # PATCH/PUT /admins/1
   # PATCH/PUT /admins/1.json
   def update
+    respond_to do |format|
+      if @admin.update(admin_params)
+        format.html { redirect_to @admin, notice: "Admin #{@admin.name} successfully updated." }
+        format.json { render :show, status: :ok, location: @admin }
+      else
+        format.html { render :edit }
+        format.json { render json: @admin.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
