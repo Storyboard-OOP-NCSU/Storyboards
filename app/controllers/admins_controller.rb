@@ -1,8 +1,8 @@
 class AdminsController < ApplicationController
   before_action :confirm_logged_in
-  before_action :logged_in_admin
+  before_action :logged_in_admin, only: [:new, :index, :show]
   before_action :set_admin, only: [:show, :edit, :update]
-  before_action :correct_admin
+  before_action :correct_admin, only: [:show, :edit, :update]
 
   # GET /admins
   # GET /admins.json
