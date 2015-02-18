@@ -21,3 +21,11 @@ module Storyboards
     # config.i18n.default_locale = :de
   end
 end
+
+#tells Rails to allow any exceptions to be handled by another application, 
+#which is in this case the application router.
+module ErrorHandler
+  class Application < Rails::Application
+    config.exceptions_app = self.routes
+  end
+end
