@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
   before_action :set_story, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_developer, only: [:new, :edit]
   before_action :correct_developer, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only, only: [:index]
 
   # GET /stories
   # GET /stories.json
@@ -91,12 +92,20 @@ class StoriesController < ApplicationController
 
     #Only developers belong to certain project can do these things.
     def correct_developer
-      @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
-      if session[:position] == ['Developer'] && @developer.project != @story.project
-        flash[:notice] = "Access denied!"
-        redirect_to project_path(@developer.project) unless session[:admin_id] == nil
-        redirect_to stories_path unless session[:developer_id] == nil
+      if session[:position] == ['Developer']
+        @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+        if @developer.project != @story.project
+           flash[:notice] = "Access denied!"
+           redirect_to project_path(@developer.project)
+        end
       end
     end
 
+  def admin_only
+    if session[:position] != ['Admin']
+       @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+       flash[:notice] = "Only access by Admin!"
+       redirect_to developer_path(@developer)
+    end
+  end
 end

@@ -2,7 +2,7 @@ class DevelopersController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_developer, only: [:show, :edit, :update, :destroy]
   before_action :correct_developer, only: [:show, :edit, :update]
-  
+  before_action :admin_only, only: [:index, :new, :destroy]
   
   # GET /developers
   # GET /developers.json
@@ -93,4 +93,13 @@ class DevelopersController < ApplicationController
         redirect_to developer_path(session[:developer_id])
       end
     end
+
+    def admin_only
+    if session[:position] != ['Admin']
+       @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+       flash[:notice] = "Only access by Admin!"
+       redirect_to developer_path(@developer)
+    end
+  end
+  
 end

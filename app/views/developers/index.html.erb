@@ -34,5 +34,9 @@
 <%= link_to 'New Developer', new_developer_path %>
 </div>
 <div class="medium btn pill-right default">
-<%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
+  <% if session[:admin_id] != nil %>
+    <%= link_to 'Back', admin_path(session[:admin_id].to_s.to_sym) %>
+  <% elsif session[:developer_id] != nil %>
+    <%= link_to 'Back', developer_path(session[:developer_id].to_s.to_sym) %>
+  <% end %>
 </div>

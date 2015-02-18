@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :correct_developer, only: [:show]
+  before_action :admin_only, except: [:show]
 
   # GET /projects
   # GET /projects.json
@@ -81,11 +82,20 @@ class ProjectsController < ApplicationController
     end
 
     def correct_developer
-      @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
-      if session[:position] == ['Developer'] && @developer.project != @project
-        flash[:notice] = "Access denied!"
-        redirect_to project_path(@developer.project) unless session[:admin_id] == nil
-        redirect_to projects_path unless session[:developer_id] == nil
+      if session[:position] == ['Developer']
+        @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+        if @developer.project != @project
+           flash[:notice] = "Access denied!"
+           redirect_to project_path(@developer.project)
+        end
+      end
+    end
+
+    def admin_only
+      if session[:position] != ['Admin']
+         @developer = Developer.find(session[:developer_id]) unless session[:developer_id] == nil
+         flash[:notice] = "Only access by Admin!"
+         redirect_to project_path(@developer.project)
       end
     end
 end
