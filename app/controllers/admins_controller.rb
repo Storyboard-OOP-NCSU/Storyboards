@@ -2,7 +2,8 @@ class AdminsController < ApplicationController
   before_action :confirm_logged_in
   before_action :logged_in_admin, only: [:new, :index, :show]
   before_action :set_admin, only: [:show, :edit, :update]
-  
+  before_action :correct_admin, only: [:show, :edit, :update]
+
   # GET /admins
   # GET /admins.json
   def index
@@ -53,6 +54,13 @@ class AdminsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
     params.require(:admin).permit(:name, :email, :password)
+  end
+
+  def correct_admin
+      if session[:position] == ['Admin'] && session[:admin_id] != @admin.id
+        flash[:notice] = "Access denied!"
+        redirect_to admin_path(session[:admin_id])
+      end
   end
 
   def logged_in_admin
