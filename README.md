@@ -12,4 +12,5 @@ psw  : 12345
 
 Bonus Functionalities：<br/>
 1. Actually sending emails on registering Developers (Please register with vaild email, otherwise you cannot receive our welcome email.)<br/>
-2. Add Cucumber Test Framework
+2. Add Cucumber Test Framework<br/>
+3. Add Burndown Chart
