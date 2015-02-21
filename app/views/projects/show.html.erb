@@ -86,6 +86,15 @@
               <td><%= link_to 'Change Stage', edit_story_path(story) %></td>         
               </tr>
      <% end %>
+     <% if story.stages != 'Complete' && session[:position] == ['Admin'] %>
+     		<tr>
+        <td><%= story.title %></td>
+        <td><%= story.description %></td>
+        <td><%= story.point %></td>
+        <td><%= story.stages %></td>
+        <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+        </tr>
+     <% end %>
      <% end %>
    	 </tbody>
   	</table>
