@@ -96,6 +96,8 @@
      		<tr>
         <td><%= story.title %></td>
         <td><%= story.description %></td>
+        <td><%= story.creator %></td>
+        <td><%= "#{story.effort} days" %></td>
         <td><%= story.point %></td>
         <td><%= story.stages %></td>
         <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
