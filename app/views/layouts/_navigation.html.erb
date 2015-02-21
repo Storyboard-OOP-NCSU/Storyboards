@@ -56,6 +56,8 @@
 	    <li><%= link_to 'Main Page', developer_path(session[:developer_id].to_s.to_sym) %></li>
 	    
 	    <li><%= link_to 'My Project', project_path(@developer.project)%></li>
+	    <li><%= link_to 'New Story', new_story_path %></li>
+	    <li><%= link_to 'Burndown Chart', burndown_path(@developer.project)%></li>
 	    <li><%= link_to 'Logout', logout_path, :method => :delete %></li>
 	  </ul>
 	</div>

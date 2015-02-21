@@ -25,3 +25,12 @@ bar_chart = Gchart.line(
 <img src="<%=bar_chart%>"/>
 </div>
 
+<% if session[:position] == ['Developer'] %>
+  <div class="medium oval btn default">
+    <%= link_to 'Back', developer_path(session[:developer_id]) %>
+  </div>
+<% elsif session[:position] == ['Admin'] %>
+  <div class="medium oval btn default">
+    <%= link_to 'Back', projects_path %>
+  </div>
+<% end %>
