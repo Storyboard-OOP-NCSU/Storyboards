@@ -108,26 +108,17 @@
   	
    	 <tbody>
    	 <% @stories.each do |story| %>
-   	 <% if story.stages == 'Complete' && session[:position] == ['Developer'] %>
-              <% developer = Developer.find_by_id(session[:developer_id]) %>
-              <% if developer.line_item.present? && developer.line_item.story == story %>
-                  <tr style="background-color:yellow">
-                  <td><%= story.title %></td>
-                  <td><%= story.description %></td>
-                  <td><%= story.point %></td>
-                  <td><%= story.stages %></td>
-                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
-                  <td>√</td>
-              <% else %>
-                  <tr>
-                  <td><%= story.title %></td>
-                  <td><%= story.description %></td>
-                  <td><%= story.point %></td>
-                  <td><%= story.stages %></td>
-                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
-              <% end %>
+   	 <% if story.stages == 'Complete' %>
+              <tr>
+              <td><%= story.title %></td>
+              <td><%= story.description %></td>
+              <td><%= story.point %></td>
+              <td><%= story.stages %></td>
+              <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+              <% if session[:position] == ['Developer'] %>
               <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>         
+              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>
+              <% end %>
               </tr>
      <% end %>
      <% end %>
