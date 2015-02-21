@@ -93,6 +93,50 @@
 <% end %>
 
 <%= form_tag do %>
+  <fieldset>
+  	<legend>Complete Story</legend>
+  	<table>
+  	  <thead>
+   	 <tr>
+   		  <th>Title</th>
+  	    <th>Description</th>
+   	 	  <th>Point</th>
+   	 	  <th>Stages</th>
+    	  <th colspan="4"></th>
+   	 </tr>
+  	 </thead>
+  	
+   	 <tbody>
+   	 <% @stories.each do |story| %>
+   	 <% if story.stages == 'Complete' && session[:position] == ['Developer'] %>
+              <% developer = Developer.find_by_id(session[:developer_id]) %>
+              <% if developer.line_item.present? && developer.line_item.story == story %>
+                  <tr style="background-color:yellow">
+                  <td><%= story.title %></td>
+                  <td><%= story.description %></td>
+                  <td><%= story.point %></td>
+                  <td><%= story.stages %></td>
+                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+                  <td>√</td>
+              <% else %>
+                  <tr>
+                  <td><%= story.title %></td>
+                  <td><%= story.description %></td>
+                  <td><%= story.point %></td>
+                  <td><%= story.stages %></td>
+                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+              <% end %>
+              <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>         
+              </tr>
+     <% end %>
+     <% end %>
+   	 </tbody>
+  	</table>
+  </fieldset>
+<% end %>
+
+<%= form_tag do %>
 	<fieldset>
   	<legend>Total Points</legend>
 		<table>
