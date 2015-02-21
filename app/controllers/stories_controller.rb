@@ -37,7 +37,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-      	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
+      	format.html { redirect_to @story.project, notice: 'Story was Created.' }
       	format.json { head :no_content }
       else
         format.html { render :new }
@@ -82,7 +82,7 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:project_id, :title, :description, :point, :stages)
+      params.require(:story).permit(:project_id, :title, :description, :point, :stages, :creator, :effort)
     end
 
     #all developers can create a story
