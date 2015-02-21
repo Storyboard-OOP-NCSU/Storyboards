@@ -52,9 +52,7 @@ class StoriesController < ApplicationController
     respond_to do |format|
       if @story.update(story_params)
       	if @story.stages == 'Complete'
-      		@story.line_items.each do |line_item|
-      			line_item.delete
-      		end
+      		@story.unassign
       	end
       	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
       	format.json { head :no_content }

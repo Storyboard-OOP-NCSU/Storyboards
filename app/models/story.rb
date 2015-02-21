@@ -6,5 +6,11 @@ class Story < ActiveRecord::Base
   validates :point, :presence => true
   validates :stages, :presence => true
   validates :project, :presence => true
+  
+  def unassign
+  	line_items.each do |line_item|
+    	line_item.delete
+    end
+  end
 
 end
