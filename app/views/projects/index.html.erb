@@ -16,10 +16,10 @@
       <tr>
         <td><%= project.title %></td>
         <td><%= project.description %></td>
-        <td><%= link_to 'Burndown Chart', burndown_path(project.id) %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><div class="pretty medium primary btn"><%= link_to 'Burndown Chart', burndown_path(project.id) %></div></td>
+        <td><div class="pretty medium success btn"><%= link_to 'Show', project %></div></td>
+        <td><div class="pretty medium warning btn"><%= link_to 'Edit', edit_project_path(project) %></div></td>
+        <td><div class="pretty medium danger btn"><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
       </tr>
     <% end %>
   </tbody>

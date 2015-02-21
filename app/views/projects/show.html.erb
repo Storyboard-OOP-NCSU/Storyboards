@@ -75,8 +75,8 @@
                   <td><%= "#{story.effort} days" %></td>
                   <td><%= story.point %></td>
                   <td><%= story.stages %></td>
-                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
-                  <td>√</td>
+                  <td><div class="pretty medium success btn"><%= link_to 'Show', story_path(story,:back => 'project') %></div></td>
+                  <td><h3>√</h3></td>
               <% else %>
                   <tr>
                   <td><%= story.title %></td>
@@ -85,11 +85,11 @@
                   <td><%= "#{story.effort} days" %></td>
                   <td><%= story.point %></td>
                   <td><%= story.stages %></td>
-                  <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
-          	      <td><%= link_to 'Sign', line_items_path(:story_id => story, :developer_id => session[:developer_id]), method: :post %></td>
+                  <td><div class="pretty medium success btn"><%= link_to 'Show', story_path(story,:back => 'project') %></div></td>
+          	      <td><div class="pretty medium warning btn"><%= link_to 'Sign', line_items_path(:story_id => story, :developer_id => session[:developer_id]), method: :post %></div></td>
               <% end %>
-              <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>         
+              <td><div class="pretty medium primary btn"><%= link_to 'Change Stage', edit_story_path(story) %></div></td>  
+              <td><div class="pretty medium danger btn"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>           
               </tr>
      <% end %>
      <% if story.stages != 'Complete' && session[:position] == ['Admin'] %>
@@ -100,7 +100,7 @@
         <td><%= "#{story.effort} days" %></td>
         <td><%= story.point %></td>
         <td><%= story.stages %></td>
-        <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+        <td><div class="pretty medium success btn"><%= link_to 'Show', story_path(story,:back => 'project') %></div></td>
         </tr>
      <% end %>
      <% end %>
@@ -135,10 +135,11 @@
               <td><%= "#{story.effort} days" %></td>
               <td><%= story.point %></td>
               <td><%= story.stages %></td>
-              <td><%= link_to 'Show', story_path(story,:back => 'project') %></td>
+              <td><div class="pretty medium success btn"><%= link_to 'Show', story_path(story,:back => 'project') %></div></td>
               <% if session[:position] == ['Developer'] %>
-              <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><%= link_to 'Change Stage', edit_story_path(story) %></td>
+               <td><div class="pretty medium primary btn"><%= link_to 'Change Stage', edit_story_path(story) %></div></td>
+              <td><div class="pretty medium danger btn"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
+             
               <% end %>
               </tr>
      <% end %>
