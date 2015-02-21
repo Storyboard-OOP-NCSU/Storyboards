@@ -6,5 +6,5 @@ class Story < ActiveRecord::Base
   validates :point, :presence => true
   validates :stages, :presence => true
   validates :project, :presence => true
-  
+
 end

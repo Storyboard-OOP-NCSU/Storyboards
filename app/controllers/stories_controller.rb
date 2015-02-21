@@ -51,6 +51,9 @@ class StoriesController < ApplicationController
   def update
     respond_to do |format|
       if @story.update(story_params)
+      	if @story.stages == 'Complete'
+      		@story.line_items.delete
+      	end
       	format.html { redirect_to @story.project, notice: 'Story was Completed.' }
       	format.json { head :no_content }
       else
