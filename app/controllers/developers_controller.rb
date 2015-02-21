@@ -1,8 +1,8 @@
 class DevelopersController < ApplicationController
   before_action :confirm_logged_in
   before_action :set_developer, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_developer, only: [:show, :update]
-  before_action :correct_developer, only: [:show, :edit, :update]
+  before_action :logged_in_developer, only: [:show]
+  before_action :correct_developer, only: [:show, :edit]
   before_action :admin_only, except: [:show, :edit, :update]
   
   # GET /developers

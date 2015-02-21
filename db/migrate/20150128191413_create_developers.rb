@@ -1,5 +1,5 @@
 class CreateDevelopers < ActiveRecord::Migration
-  def change
+  def up
     create_table :developers do |t|
       t.string :name
       t.string :email
@@ -8,5 +8,9 @@ class CreateDevelopers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end
+
+  def down
+  	drop_table :developers
   end
 end

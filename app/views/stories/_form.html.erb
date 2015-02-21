@@ -29,6 +29,17 @@
     </div>
     
     <div>
+      <% @developer = Developer.find(session[:developer_id])%>
+      <%= f.label :creator %>
+      <%= f.text_field :creator, :value => "#{@developer.name}",:readonly => true %>
+    </div>
+
+    <div>
+      <%= f.label :effort %>
+      <%= f.number_field :effort, :placeholder => "< 30 days" %>
+    </div>
+
+    <div>
       <%= f.label :point %>
       <%= f.number_field :point %>
     </div>

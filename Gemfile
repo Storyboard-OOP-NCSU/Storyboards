@@ -25,6 +25,8 @@ gem 'yaml_db'
 gem 'gumby-framework'
 gem "modernizr-rails"
 
+gem "googlecharts", :require => "gchart"
+
 group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended

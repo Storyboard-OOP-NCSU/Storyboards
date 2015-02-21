@@ -3,6 +3,8 @@ class Story < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
   validates :title, :presence => true
   validates :description, :presence => true
+  validates :creator, :presence => true
+  validates :effort, :presence => true
   validates :point, :presence => true
   validates :stages, :presence => true
   validates :project, :presence => true

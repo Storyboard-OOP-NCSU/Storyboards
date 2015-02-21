@@ -1,5 +1,5 @@
 class CreateAdmins < ActiveRecord::Migration
-  def change
+  def up
     create_table :admins do |t|
       t.string :name
       t.string :email
@@ -7,5 +7,9 @@ class CreateAdmins < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end
+
+  def down
+  	drop_table :admins
   end
 end

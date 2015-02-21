@@ -1,0 +1,27 @@
+<h1>Burndown Chart</h1>
+
+
+<%require 'gchart'%>
+<%
+data_array_1 = [0,0]
+data_array_1[0] = @fixTotalTime
+data_array_2 = @timeArray
+
+bar_chart = Gchart.line(
+            :size => '600x400',
+            :bar_colors => ['0088FF', '009933'],
+            :bg => 'F3F3F7',
+            :legend => ['Expected Time Remaining', 'Actual Time Remaining'],
+            :data => [data_array_1, data_array_2],
+            :stacked => false,
+            :legend_position => 'bottom',
+            :axis_with_labels => [['x'], ['y']],
+            :max_value => @fixTotalTime,
+            :min_value => 0,
+            :axis_labels => [["|Analysis|Ready for Dev|In Dev|Dev Complete|In Test|Complete"]],
+            )
+%>
+<div align="center">
+<img src="<%=bar_chart%>"/>
+</div>
+
